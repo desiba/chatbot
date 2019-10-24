@@ -1,6 +1,8 @@
 var botui = new BotUI('api-bot');
 
-var socket = io.connect(window.location.hostname + ':8010');
+var socket = io.connect('https://aellachatbot.herokuapp.com/' + process.env.PORT || ':8010');
+
+//var socket = io.connect(window.location.hostname + process.env.PORT || ':8010');
 //var socket = io.connect('http://localhost:8010');
 // read the BotUI docs : https://docs.botui.org/
 
