@@ -3,7 +3,7 @@ var apiai = require('apiai');
 // read the api.ai docs : https://api.ai/docs/
 
 //Enter your API Key
-var app = apiai('a1c84b4a83d748ada6b5610235254140');
+var app = apiai(process.env.API_AI_KEY);
 
 // Function which returns speech from api.ai
 var getRes = function(query) {
