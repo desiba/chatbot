@@ -1,0 +1,39 @@
+{
+  "name": "bot-api.ai",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "api-start": "node "
+  },
+  "dependencies": {
+    "apiai": "^4.0.3",
+    "body-parser": "^1.18.3",
+    "circular-json": "^0.3.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "^3.1.0",
+    "dotenv": "^8.2.0",
+    "ejs": "~2.5.6",
+    "express": "^4.16.3",
+    "morgan": "^1.9.0",
+    "mysql": "^2.17.1",
+    "socket.io": "^2.1.1",
+    "yargs": "*"
+  },
+  "description": "Update : This repo was made at the time when Dialogflow was known as API.AI. You will have to use Dialogflow APIs V1 in the console to make it work, that said. this repo is no longer maintained by the creators. ###### FEEL FREE TO MAKE PULL REQUESTS",
+  "main": "app.js",
+  "directories": {
+    "test": "tests"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/desiba/chatbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/desiba/chatbot/issues"
+  },
+  "homepage": "https://github.com/desiba/chatbot#readme"
+}
