@@ -15,7 +15,7 @@ router.get('/hello', (req, res) => {
    res.send("hello world");
 });
 
-router.get('/users', (req, res) => {
+router.post('/users', (req, res) => {
   dbConn.query('SELECT COUNT(*) FROM users',  (error, results, fields) => {
       if (error) throw error;
       return res.send({ error: false, data: results, message: 'users list.' });
