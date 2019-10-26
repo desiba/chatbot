@@ -7,16 +7,16 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'botUI_api.ai' });
 });
 
-router.get('/hello', (req, res) => {
-
+router.post('/hello', (req, res) => {
+   console.log(res.body);
 
   //const dateToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
 
-   res.send("hello world");
+   res.send("hello world from webhook");
 });
 
 router.post('/users', (req, res) => {
-  
+
       console.log(req.body);
 
        dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
