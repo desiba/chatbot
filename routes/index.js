@@ -16,6 +16,9 @@ router.get('/hello', (req, res) => {
 });
 
 router.post('/users', (req, res) => {
+  
+      console.log(req.body);
+
        dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
       if (error) throw error;
 
