@@ -3,7 +3,7 @@ var router = express.Router();
 var dbConn = require('../config/dbConn');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.post('/', function(req, res, next) {
   res.render('index', { title: 'botUI_api.ai' });
 });
 
@@ -12,7 +12,9 @@ router.post('/hello', (req, res) => {
 
   //const dateToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
 
-   res.send("hello world from webhook");
+   res.send({
+        displayText:"hello world from webhook"
+      });
 });
 
 router.post('/users', (req, res) => {
