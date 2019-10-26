@@ -3,6 +3,7 @@ var botui = new BotUI('api-bot');
 var socket = io.connect('https://aellachatbot.herokuapp.com:8010');
 
 //var socket = io.connect(window.location.hostname + process.env.PORT || ':8010');
+
 //var socket = io.connect('http://localhost:8010');
 // read the BotUI docs : https://docs.botui.org/
 
@@ -41,5 +42,7 @@ function addAction () {
   }).then(function (res) {
     socket.emit('fromClient', { client : res.value });
     console.log('client response: ', res.value);
-  })
+  }).catch(function(error){
+      console.log(error);
+  });
 }
