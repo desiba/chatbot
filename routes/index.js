@@ -12,7 +12,7 @@ router.post('/hello', (req, res) => {
 
   //const dateToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
 
-   res.send({
+   return res.status(200).json({
         displayText:"hello world from webhook"
       });
 });
