@@ -4,13 +4,13 @@ var uuidv1 = require('uuid/v1');
 // read the api.ai docs : https://api.ai/docs/
 
 //Enter your API Key
-var app = apiai(process.env.API_AI_KEY);
+var app = apiai(process.env.CLIENT_ACCESS_TOKEN);
 
 
 // Function which returns speech from api.ai
 var getRes = function(query) {
   var request = app.textRequest(query, {
-      sessionId: uuidv1()
+      sessionId: process.env.DEVELOPER_ACCESS_TOKEN
   });
 const responseFromAPI = new Promise(
         function (resolve, reject) {
