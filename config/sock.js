@@ -3,7 +3,7 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var api = require('./api');
-const PORT = process.env.PORT || 8010;
+const PORT =  8010;
 
 var conn = function() {
   server.listen(PORT);
