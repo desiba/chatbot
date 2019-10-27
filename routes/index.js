@@ -3,7 +3,7 @@ var router = express.Router();
 var dbConn = require('../config/dbConn');
 
 /* GET home page. */
-router.post('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
   res.render('index', { title: 'botUI_api.ai' });
 });
 

@@ -3,9 +3,10 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var api = require('./api');
+const PORT = process.env.PORT || 8010;
 
 var conn = function() {
-  server.listen(8010);
+  server.listen(PORT);
 
   app.get('/api', function (req, res) {
     console.log('api woprking');
