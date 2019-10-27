@@ -1,10 +1,10 @@
 var apiai = require('apiai');
-var uuidv1 = require('uuid/v1');
 
 // read the api.ai docs : https://api.ai/docs/
 
 //Enter your API Key
-var app = apiai(process.env.CLIENT_ACCESS_TOKEN);
+//var app = apiai(process.env.CLIENT_ACCESS_TOKEN);
+var app = apiai("843e044bf18b430cbce8dbf2c8181cb4");
 
 
 // Function which returns speech from api.ai
@@ -32,8 +32,8 @@ request.end();
 };
 
 // test the command :
-getRes('hello').then(function(res){console.log(res)});
-getRes('why user is banned').then(function(res){console.log(res)});
+getRes('hello').then(function(res){console.log(res.body)});
+getRes('why user is banned').then(function(res){console.log(res.body)});
 
 
 module.exports = {getRes}
