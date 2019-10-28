@@ -93,17 +93,19 @@ router.post('/users', (req, res) => {
 
       
       if(res != null){
-        const result = res.status(200).json({
-                status: 200,
-                data : data
-              });
-             
-              return result.data;
+          const response = {
+            fulfillmentText: data,
+          }
+          res.json(response);
+                  
+        }else{
+          const response = {
+            fulfillmentText: 'can not fetch data',
+          }
+          res.json(response);
         }
-        return  res.status(404).json({
-          status: 404, 
-          data: "not found"
-        });
+
+       
   });
 });
 
