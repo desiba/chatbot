@@ -20,8 +20,8 @@ botui.message.add({
     console.log(res.value); // will print whatever was typed in the field.
   }).then(function () {
     socket.on('fromServer', function (data) { // recieveing a reply from server.
-      console.log(data.server);
-      newMessage(data.server);
+      console.log(data);
+      newMessage(data);
       addAction();
   })
 });
@@ -40,8 +40,8 @@ function addAction () {
       placeholder: 'enter response...', 
     }
   }).then(function (res) {
-    socket.emit('fromClient', { client : res.value });
-    console.log('client response: ', res.value);
+    socket.emit('fromClient', { client : res });
+    console.log('client response: ', res);
   }).catch(function(error){
       console.log(error);
   });

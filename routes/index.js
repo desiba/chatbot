@@ -86,21 +86,22 @@ router.post('/webhook', (req, res) => {
 
 router.post('/users', (req, res) => {
 
+      console.log('request header ' + JSON.stringify(req.headers));
+      console.log('request body ' + JSON.stringify(req.body));
+      let action = req.body.Queryresult.action;
+      console.log('Action ' + JSON.stringify(action));
 
-       dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
+      dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
       if (error) throw error;
 
-         console.log(JSON.stringify(data));
+          console.log(JSON.stringify(data));
      
           const response = {
             fulfillmentText: JSON.stringify(data),
           }
           res.json(response);
                   
-       
-
-       
-  });
+      });
 });
 
 router.post('/total_loan_disbursed', (req, res) => {
