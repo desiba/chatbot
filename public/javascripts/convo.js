@@ -1,6 +1,6 @@
 var botui = new BotUI('api-bot');
 
-var socket = io.connect('https://aellachatbot.herokuapp.com:8010'); //heroku
+var socket = io.connect('https://aellachatbot.herokuapp.com'); //heroku
 
 //var socket = io.connect(window.location.hostname + process.env.PORT || ':8010');
 
