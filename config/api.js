@@ -32,8 +32,10 @@ request.end();
 };
 
 // test the command :
+getRes('hi').then(function(res){console.log(res.body)});
 getRes('hello').then(function(res){console.log(res.body)});
-getRes('why user is banned').then(function(res){console.log(res.body)});
+getRes('total number of users').then(function(res){console.log(res.body)});
+getRes('total loan disbursed').then(function(res){console.log(res.body)});
 
 
 module.exports = {getRes}
