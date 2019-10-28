@@ -1,6 +1,42 @@
 var express = require('express');
 var router = express.Router();
 var dbConn = require('../config/dbConn');
+const {WebhookClient} = require('dialogflow-fulfillment');
+
+
+
+function welcome (agent) {
+  agent.add(`Welcome to Express.JS webhook!`);
+}
+
+function fallback (agent) {
+  agent.add(`I didn't understand from webhook`);
+  agent.add(`I'm sorry, can you try again from webhook?`);
+}
+
+function WebhookProcessing(req, res) {
+  const agent = new WebhookClient({request: req, response: res});
+  console.info(`agent set`);
+
+  let intentMap = new Map();
+  intentMap.set('Default Welcome Intent', welcome);
+  intentMap.set('Default Fallback Intent', fallback);
+// intentMap.set('<INTENT_NAME_HERE>', yourFunctionHandler);
+  agent.handleRequest(intentMap);
+}
+
+
+// Webhook
+router.post('/hook', function (req, res) {
+  console.info(`\n\n>>>>>>> S E R V E R   H I T <<<<<<<`);
+  WebhookProcessing(req, res);
+  console.log(res.body);
+});
+
+
+
+
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,7 +50,7 @@ router.post('/hello', (req, res) => {
 
 
  return res.send({
-    displayText:"hello world"
+    text:"hello world from webhook"
   });
   
    //return res.status(200).json({
