@@ -49,11 +49,11 @@ router.post('/hello', (req, res) => {
   //const dateToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
 
  res.setHeader('Content-Type', 'application/json');
- var speech = req.body.result && req.body.result.parameters;
+ //var speech = req.body.result && req.body.result.parameters;
 
-return res.json({
-    speech: speech,
-    displayText: speech,
+return res.status(200).json({
+    speech: "hello from webhook",
+    displayText: "hello from webhook",
     source: "hello world from webhook"
  });
  //return res.send({
