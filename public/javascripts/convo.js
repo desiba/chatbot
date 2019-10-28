@@ -1,10 +1,10 @@
 var botui = new BotUI('api-bot');
 
-var socket = io.connect('https://aellachatbot.herokuapp.com:80'); //heroku
+//var socket = io.connect('https://aellachatbot.herokuapp.com:80'); //heroku
 
 //var socket = io.connect(window.location.hostname + process.env.PORT || ':8010');
 
-//var socket = io.connect('http://localhost:8010');
+var socket = io.connect('http://localhost:8010');
 // read the BotUI docs : https://docs.botui.org/
 
 botui.message.add({
@@ -40,8 +40,8 @@ function addAction () {
       placeholder: 'enter response...', 
     }
   }).then(function (res) {
-    socket.emit('fromClient', { client : res });
-    console.log('client response: ', res);
+    socket.emit('fromClient', { client : res.body });
+    console.log('client response: ', res.body);
   }).catch(function(error){
       console.log(error);
   });

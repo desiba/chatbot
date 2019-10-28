@@ -88,7 +88,7 @@ router.post('/users', (req, res) => {
 
       console.log('request header ' + JSON.stringify(req.headers));
       console.log('request body ' + JSON.stringify(req.body));
-      let action = req.body.Queryresult.action;
+      let action = req.body.queryResult.action;
       console.log('Action ' + JSON.stringify(action));
 
       dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
