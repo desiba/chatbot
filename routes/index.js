@@ -92,18 +92,13 @@ router.post('/users', (req, res) => {
       if (error) throw error;
 
       
-      if(res != null){
+     
           const response = {
             fulfillmentText: data,
           }
           res.json(response);
                   
-        }else{
-          const response = {
-            fulfillmentText: 'can not fetch data',
-          }
-          res.json(response);
-        }
+       
 
        
   });

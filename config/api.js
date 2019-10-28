@@ -32,8 +32,8 @@ request.end();
 };
 
 // test the command :
-getRes('hello').then(function(res){console.log(res)});
-getRes('why user is banned').then(function(res){console.log(res)});
+getRes('hello').then(function(res){console.log(res.body)});
+getRes('why user is banned').then(function(res){console.log(res.body)});
 
 
 module.exports = {getRes}
