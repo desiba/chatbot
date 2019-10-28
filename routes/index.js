@@ -86,15 +86,14 @@ router.post('/webhook', (req, res) => {
 
 router.post('/users', (req, res) => {
 
-      console.log(req.body);
 
        dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
       if (error) throw error;
 
-      
+         console.log(JSON.stringify(data));
      
           const response = {
-            fulfillmentText: data,
+            fulfillmentText: JSON.stringify(data),
           }
           res.json(response);
                   
