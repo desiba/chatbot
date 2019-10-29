@@ -88,11 +88,12 @@ router.post('/users', (req, res) => {
 
             dbConn.query("SELECT COUNT(*) AS loan_type FROM loan_type",  (error, data) => {
               if (error) throw error;
-        
+                  let results = 'total loan: '+ data[0].loan_type;
+                 
                   console.log(JSON.stringify(data));
              
                   let total_loan_disburement_response = {
-                    fulfillmentText: JSON.stringify(data),
+                    fulfillmentText: JSON.stringify(results),
                   }
                   res.json(total_loan_disburement_response);
     
