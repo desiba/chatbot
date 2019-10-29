@@ -84,22 +84,22 @@ router.post('/users', (req, res) => {
 
         case "input.totalloandisbursement":
 
-              
-            dbConn.query('SELECT * FROM loan_type')
-            .then((result) => {
-              //res.end(`${result.rows[0].name}\n`);
+           
 
-              let total_loan_disburement_response = {
-                fulfillmentText: JSON.stringify(result),
-              }
-              res.json(total_loan_disburement_response);
+            dbConn.query("SELECT COUNT(*) AS loan_type FROM loan_type",  (error, data) => {
+              if (error) throw error;
+        
+                  console.log(JSON.stringify(data));
+             
+                  let total_loan_disburement_response = {
+                    fulfillmentText: JSON.stringify(data),
+                  }
+                  res.json(total_loan_disburement_response);
+    
+                  dbConn.end();
+                          
+              });
 
-              dbConn.end();
-            })
-            .catch(() => {
-              res.end('ERROR');
-              dbConn.end();
-            });
         /*
           var dateProperties = new Date('2015-03-04T00:00:00.000Z');
 
