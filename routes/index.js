@@ -80,14 +80,37 @@ router.post('/users', (req, res) => {
               });
           
           break;
+
+
         case "input.totalloandisbursement":
 
+              
+            dbConn.query('SELECT * FROM loan_type')
+            .then((result) => {
+              //res.end(`${result.rows[0].name}\n`);
+
+              let total_loan_disburement_response = {
+                fulfillmentText: JSON.stringify(result),
+              }
+              res.json(total_loan_disburement_response);
+
+              dbConn.end();
+            })
+            .catch(() => {
+              res.end('ERROR');
+              dbConn.end();
+            });
+        /*
           var dateProperties = new Date('2015-03-04T00:00:00.000Z');
-          
+
+              console.log(dateProperties.getFullYear);
+              console.log(dateProperties.getUTCFullYear);
+
           let total_loan_disburement_response = {
             fulfillmentText:  JSON.stringify(dateProperties.getUTCFullYear),
           }
           res.json(total_loan_disburement_response);
+          */
           break;
 
         case "Apple":
