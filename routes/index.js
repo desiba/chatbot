@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var dbConn = require('../config/dbConn');
+const thousands = require('thousands');
 
 
 
@@ -75,7 +76,7 @@ router.post('/users', (req, res) => {
                   console.log(JSON.stringify(data));
              
                   let total_users_response = {
-                    fulfillmentText: res_total_users,
+                    fulfillmentText: thousands(res_total_users),
                   }
                   res.json(total_users_response);
                           
@@ -128,7 +129,7 @@ router.post('/users', (req, res) => {
                     let result_total_disbursment = data[0].total_loan_disbursed
                     
                     let total_loan_response = {
-                      fulfillmentText: result_total_disbursment,
+                      fulfillmentText: thousands(result_total_disbursment),
                     }
                     res.json(total_loan_response);
                             
