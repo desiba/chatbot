@@ -96,7 +96,7 @@ router.post('/users', (req, res) => {
                   }
                   res.json(total_loan_disburement_response);
     
-                  dbConn.end();
+                  
                           
               });
 
