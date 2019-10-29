@@ -83,9 +83,19 @@ router.post('/users', (req, res) => {
 
 
         case "input.totalloandisbursement":
+          let parameters = req.body.queryResult.parameters;
+          const dateObj = {
+            day_period : parameters.day_period,
+            date : parameters.date,
+            date2 : parameters.date2,
+            week_period : parameters.week_period,
+            start_date : parameters.start_date,
+            end_date : parameters.end_date
 
-           
+          }
 
+          console.log(dateObj);
+            
             dbConn.query("SELECT COUNT(*) AS loan_type FROM loan_type",  (error, data) => {
               if (error) throw error;
                   let results = 'total loan: '+ data[0].loan_type;
@@ -93,7 +103,7 @@ router.post('/users', (req, res) => {
                   console.log(JSON.stringify(data));
              
                   let total_loan_disburement_response = {
-                    fulfillmentText: JSON.stringify(results),
+                    fulfillmentText: results,
                   }
                   res.json(total_loan_disburement_response);
     
