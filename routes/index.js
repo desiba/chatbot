@@ -70,30 +70,30 @@ router.post('/users', (req, res) => {
         
                   console.log(JSON.stringify(data));
              
-                  let response = {
+                  let total_users_response = {
                     fulfillmentText: JSON.stringify(data),
                   }
-                  res.json(response);
+                  res.json(total_users_response);
                           
               });
           
           break;
         case "input.totalloandisbursed":
           text = "message from total loan disbursed";
-          let response = {
+          let total_loan_response = {
             fulfillmentText: text,
           }
-          res.json(response);
+          res.json(total_loan_response);
           break;
         case "Apple":
           text = "How you like them apples?";
           break;
         default:
             text = "default webhook";
-            let response = {
+            let default_response = {
               fulfillmentText: text,
             }
-            res.json(response);
+            res.json(default_response);
       }
 
       
