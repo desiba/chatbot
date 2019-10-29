@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 var dbConn = require('../config/dbConn');
-const {WebhookClient} = require('dialogflow-fulfillment');
 
 
 
@@ -49,7 +48,7 @@ router.post('/webhook', (req, res) => {
 	// Read the v2 api documentation of dialogflow : https://dialogflow.com/docs/fulfillment
 	// Using the v2 will become mandatory, Google wrote a guide to migrate from v1 to v2 as v2 is officially released
 
-	const response = {
+	let response = {
 		fulfillmentText: "Your webhook works fine !",
 	}
 	res.json(response);
@@ -71,7 +70,7 @@ router.post('/users', (req, res) => {
         
                   console.log(JSON.stringify(data));
              
-                  const response = {
+                  let response = {
                     fulfillmentText: JSON.stringify(data),
                   }
                   res.json(response);
@@ -81,7 +80,7 @@ router.post('/users', (req, res) => {
           break;
         case "input.totalloandisbursed":
           text = "message from total loan disbursed";
-          const response = {
+          let response = {
             fulfillmentText: text,
           }
           res.json(response);
@@ -91,7 +90,7 @@ router.post('/users', (req, res) => {
           break;
         default:
             text = "default webhook";
-            const response = {
+            let response = {
               fulfillmentText: text,
             }
             res.json(response);
