@@ -57,11 +57,12 @@ router.post('/webhook', (req, res) => {
 
 router.post('/users', (req, res) => {
 
+      let action = req.body.queryResult.action;
+
       console.log('request header ' + JSON.stringify(req.headers));
       console.log('request body ' + JSON.stringify(req.body));
       console.log('Action ' + JSON.stringify(action));
 
-      let action = req.body.queryResult.action;
 
       switch(action) {
         case "input.totalusers":
@@ -81,16 +82,17 @@ router.post('/users', (req, res) => {
           break;
         case "input.totalloandisbursement":
           
-          let total_loan_response = {
+          let total_loan_disburement_response = {
             fulfillmentText:  "message from total loan disbursed",
           }
-          res.json(total_loan_response);
+          res.json(total_loan_disburement_response);
           break;
+
         case "Apple":
           text = "How you like them apples?";
           break;
 
-          case "input.totalloandisbursed":
+        case "input.totalloandisbursed":
 
               dbConn.query('SELECT SUM(amount) AS total_loan_disbursed FROM disbursements',  (error, data) => {
                 if (error) throw error;
