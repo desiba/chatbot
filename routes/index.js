@@ -123,7 +123,7 @@ router.post('/users', (req, res) => {
 
         case "input.totalloandisbursed":
 
-              dbConn.query('SELECT SUM(amount) AS total_loan_disbursed FROM disbursements WHERE approval_status IN (1,3,7,9)',  (error, data) => {
+              dbConn.query('SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9)',  (error, data) => {
                 if (error) throw error;
 
                     let result_total_disbursment = data[0].total_loan_disbursed
