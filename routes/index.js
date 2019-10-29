@@ -79,9 +79,9 @@ router.post('/users', (req, res) => {
           
           break;
         case "input.totalloandisbursed":
-          text = "message from total loan disbursed";
+          
           let total_loan_response = {
-            fulfillmentText: text,
+            fulfillmentText:  "message from total loan disbursed",
           }
           res.json(total_loan_response);
           break;
@@ -89,9 +89,9 @@ router.post('/users', (req, res) => {
           text = "How you like them apples?";
           break;
         default:
-            text = "default webhook";
+            
             let default_response = {
-              fulfillmentText: text,
+              fulfillmentText: "default webhook",
             }
             res.json(default_response);
       }
