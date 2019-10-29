@@ -82,10 +82,10 @@ router.post('/users', (req, res) => {
           break;
         case "input.totalloandisbursement":
 
-          var dateProperties = new Date('2015-03-04T00:00:00.000Z')
+          var dateProperties = new Date('2015-03-04T00:00:00.000Z');
           
           let total_loan_disburement_response = {
-            fulfillmentText:  dateProperties.getUTCFullYear,
+            fulfillmentText:  JSON.stringify(dateProperties.getUTCFullYear),
           }
           res.json(total_loan_disburement_response);
           break;
