@@ -124,11 +124,11 @@ router.post('/users', (req, res) => {
 
               dbConn.query('SELECT SUM(amount) AS total_loan_disbursed FROM disbursements',  (error, data) => {
                 if (error) throw error;
-          
-                    console.log(JSON.stringify(data));
-               
+
+                    let result_total_disbursment = data[0].total_loan_disbursed
+                    
                     let total_loan_response = {
-                      fulfillmentText: JSON.stringify(data),
+                      fulfillmentText: result_total_disbursment,
                     }
                     res.json(total_loan_response);
                             
