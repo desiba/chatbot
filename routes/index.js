@@ -69,11 +69,13 @@ router.post('/users', (req, res) => {
 
             dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
               if (error) throw error;
-        
+
+                let res_total_users = data[0].totalusers;
+
                   console.log(JSON.stringify(data));
              
                   let total_users_response = {
-                    fulfillmentText: JSON.stringify(data),
+                    fulfillmentText: res_total_users,
                   }
                   res.json(total_users_response);
                           
@@ -111,17 +113,7 @@ router.post('/users', (req, res) => {
                           
               });
 
-        /*
-          var dateProperties = new Date('2015-03-04T00:00:00.000Z');
-
-              console.log(dateProperties.getFullYear);
-              console.log(dateProperties.getUTCFullYear);
-
-          let total_loan_disburement_response = {
-            fulfillmentText:  JSON.stringify(dateProperties.getUTCFullYear),
-          }
-          res.json(total_loan_disburement_response);
-          */
+       
           break;
 
         case "Apple":
