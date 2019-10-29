@@ -59,8 +59,9 @@ router.post('/users', (req, res) => {
 
       console.log('request header ' + JSON.stringify(req.headers));
       console.log('request body ' + JSON.stringify(req.body));
-      let action = req.body.queryResult.action;
       console.log('Action ' + JSON.stringify(action));
+
+      let action = req.body.queryResult.action;
 
       switch(action) {
         case "input.totalusers":
@@ -78,7 +79,7 @@ router.post('/users', (req, res) => {
               });
           
           break;
-        case "input.totalloandisbursed":
+        case "input.totalloandisbursement":
           
           let total_loan_response = {
             fulfillmentText:  "message from total loan disbursed",
@@ -88,6 +89,25 @@ router.post('/users', (req, res) => {
         case "Apple":
           text = "How you like them apples?";
           break;
+
+          case "input.totalloandisbursed":
+
+              dbConn.query('SELECT SUM(amount) AS total_loan_disbursed FROM disbursements',  (error, data) => {
+                if (error) throw error;
+          
+                    console.log(JSON.stringify(data));
+               
+                    let total_loan_response = {
+                      fulfillmentText: JSON.stringify(data),
+                    }
+                    res.json(total_loan_response);
+                            
+                });
+
+              break;
+            case "Apple":
+              text = "How you like them apples?";
+              break;
         default:
             
             let default_response = {
