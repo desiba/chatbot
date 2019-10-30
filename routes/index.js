@@ -122,8 +122,10 @@ router.post('/users', (req, res) => {
           
             let account_digits_list = parameters.number;
 
-            let results = account_digits_list;
-              
+            let results = JSON.stringify(account_digits_list);
+
+            console.log(results);
+
             let user_email = {
               fulfillmentText: results,
             }
