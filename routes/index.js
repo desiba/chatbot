@@ -125,17 +125,17 @@ router.post('/users', (req, res) => {
             
 
             //let results = JSON.stringify(account_digits_list);
-            let results = account_digits_list;
-            let first6digits = results[0];
-            let last4digits = results[1];
+            //let results = account_digits_list;
+            //let first6digits = results[0];
+            //let last4digits = results[1];
 
-            let firstdigits = (/^(\d{6})$/.results[0]) ? 'passed' : 'failed';
-            let lastdigits = (/^(\d{4})$/.results[1]) ? 'passed' : 'failed';
+            //let firstdigits = (/^(\d{6})$/.results[0]) ? 'passed' : 'failed';
+            //let lastdigits = (/^(\d{4})$/.results[1]) ? 'passed' : 'failed';
 
-            console.log(results[0]);
-            console.log(results[1]);
-            console.log(results);
-            console.log(firstdigits +' '+ lastdigits);
+            //console.log(results[0]);
+            //console.log(results[1]);
+            //console.log(results);
+            //console.log(firstdigits +' '+ lastdigits);
 
             dbConn.query(`select email from user_cards where last4 = 9594 and bin = 418742`,  (error, data) => {
                 if (error) throw error;
