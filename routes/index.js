@@ -123,8 +123,13 @@ router.post('/users', (req, res) => {
             let userid = parameters.number;
             let email = parameters.email;
 
-            dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid}`,  (error, data) => {
+            dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
               if (error) throw error;
+
+              let ban_start = data[0].ban_starts;
+              let ban_ends = data[0].ban_ends;
+              let active = data[0].active;
+              let note = data[0].note;
               
               let user_ban_details = {
                 fulfillmentText: JSON.stringify(data),
