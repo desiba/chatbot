@@ -124,27 +124,38 @@ router.post('/users', (req, res) => {
             let email = parameters.email;
 
             dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
-              if (error) throw error;
+              if(data == null){
+                if (error) throw error;
 
-              let ban_start = data[0].ban_starts;
-              let ban_ends = data[0].ban_ends;
-              let active = data[0].active;
-              let note = data[0].note;
+                let ban_start = data[0].ban_starts;
+                let ban_ends = data[0].ban_ends;
+                let active = data[0].active;
+                let note = data[0].note;
 
-              active = (active == 1) ? 'banned' : 'banned lifted';
+                active = (active == 1) ? 'banned' : 'banned lifted';
 
 
-              
-              let user_ban_details = {
-                fulfillmentText:  "Ban Starts: " +ban_start + 
-                                  "\nBan Ends: " +ban_ends +
-                                  "\nStatus: " + active +
-                                  "\nReason: "+ note,
+                
+                let user_ban_details = {
+                  fulfillmentText:  "Ban Starts: " +ban_start + 
+                                    "\nBan Ends: " +ban_ends +
+                                    "\nStatus: " + active +
+                                    "\nReason: "+ note,
+                }
+                res.json(user_ban_details);
+
+              }else{
+
+                let user_ban_details = {
+                  fulfillmentText:  userid + " does not exist on the db",
+                                    
+                }
+                res.json(user_ban_details);
+
               }
-              res.json(user_ban_details);
 
-          });
-
+            });
+          
 
 
         break;
