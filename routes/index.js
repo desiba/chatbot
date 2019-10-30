@@ -56,7 +56,7 @@ router.post('/webhook', (req, res) => {
 });
 
 
-router.post('/users', (req, res) => {
+router.post('/webhook', (req, res) => {
 
       let action = req.body.queryResult.action;
       let parameters = req.body.queryResult.parameters;
