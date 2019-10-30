@@ -141,7 +141,7 @@ router.post('/users', (req, res) => {
                 if (error) throw error;
                 
                 let user_email = {
-                  fulfillmentText: JSON.stringify(data[0].email),
+                  fulfillmentText: data[0].email +' '+ data[1].email,
                 }
                 res.json(user_email);
 
