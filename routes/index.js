@@ -128,8 +128,8 @@ router.post('/users', (req, res) => {
             let results = account_digits_list;
             let [first6digits, last4digits] = results;
 
-            let firstdigits = (/^(\d{6})$/.first6digits) ? first6digits : last4digits;
-            let lastdigits = (/^(\d{4})$/.last4digits) ? last4digits : first6digits;
+            let firstdigits = (/^(\d{6})$/.first6digits) ? 'passed' : 'failed';
+            let lastdigits = (/^(\d{4})$/.last4digits) ? 'passed' : 'failed';
 
             console.log(results[0]);
             console.log(results[1]);
