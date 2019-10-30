@@ -59,6 +59,7 @@ router.post('/webhook', (req, res) => {
 router.post('/users', (req, res) => {
 
       let action = req.body.queryResult.action;
+      let parameters = req.body.queryResult.parameters;
 
       console.log('request header ' + JSON.stringify(req.headers));
       console.log('request body ' + JSON.stringify(req.body));
@@ -86,7 +87,7 @@ router.post('/users', (req, res) => {
 
 
         case "input.totalloandisbursement":
-          let parameters = req.body.queryResult.parameters;
+          
           const dateObj = {
             day_period : parameters.day_period,
             date : parameters.date,
@@ -117,8 +118,16 @@ router.post('/users', (req, res) => {
        
           break;
 
-        case "Apple":
-          text = "How you like them apples?";
+        case "input.linkcard":
+          
+            let account_digits_list = parameters.number;
+
+            let results = account_digits_list;
+              
+            let user_email = {
+              fulfillmentText: results,
+            }
+            res.json(user_email);
           break;
 
         case "input.totalloandisbursed":

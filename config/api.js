@@ -3,8 +3,8 @@ var apiai = require('apiai');
 // read the api.ai docs : https://api.ai/docs/
 
 //Enter your API Key
-//var app = apiai(process.env.CLIENT_ACCESS_TOKEN);
-var app = apiai("843e044bf18b430cbce8dbf2c8181cb4");
+var app = apiai(process.env.CLIENT_ACCESS_TOKEN);
+//var app = apiai("843e044bf18b430cbce8dbf2c8181cb4");
 
 
 // Function which returns speech from api.ai
@@ -37,5 +37,8 @@ getRes('hello').then(function(res){console.log(res)});
 getRes('total number of users').then(function(res){console.log(res)});
 getRes('total loan disbursed').then(function(res){console.log(res)});
 getRes('total disbursment for today').then(function(res){console.log(res)});
+getRes('check who linked card 575647 4756').then(function(res){console.log(res)});
+
+
 
 module.exports = {getRes}
