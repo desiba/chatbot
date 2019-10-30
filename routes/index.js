@@ -130,9 +130,16 @@ router.post('/users', (req, res) => {
               let ban_ends = data[0].ban_ends;
               let active = data[0].active;
               let note = data[0].note;
+
+              active = (active == 1) ? 'banned' : 'banned lifted';
+
+
               
               let user_ban_details = {
-                fulfillmentText: JSON.stringify(data),
+                fulfillmentText:  "ban starts " +ban_start + 
+                                  " ban ends " +ban_ends +
+                                  " status " + active +
+                                  " reason "+ note,
               }
               res.json(user_ban_details);
 
