@@ -139,9 +139,9 @@ router.post('/users', (req, res) => {
 
             dbConn.query(`select email from user_cards where last4 = 9594 and bin = 418742`,  (error, data) => {
                 if (error) throw error;
-
+                
                 let user_email = {
-                  fulfillmentText: JSON.stringify(data),
+                  fulfillmentText: JSON.stringify(data[0].email),
                 }
                 res.json(user_email);
 
