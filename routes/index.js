@@ -122,14 +122,26 @@ router.post('/users', (req, res) => {
           
             let account_digits_list = parameters.number;
 
-            let results = JSON.stringify(account_digits_list);
+            
+
+            //let results = JSON.stringify(account_digits_list);
+            let results = account_digits_list;
+            let [first6digits, last4digits] = results;
+
+            let firstdigits = (/[0-9]{6}/.first6digits) ? first6digits : last4digits;
+            let lastdigits = (/[0-9]{4}/.last4digits) ? last4digits : first6digits;
 
             console.log(results);
 
-            let user_email = {
-              fulfillmentText: results,
-            }
-            res.json(user_email);
+            dbConn.query(`select email from user_cards where last4 = ${lastdigits} and bin = ${firstdigits}`,  (error, data) => {
+                if (error) throw error;
+
+                let user_email = {
+                  fulfillmentText: JSON.stringify(data),
+                }
+                res.json(user_email);
+
+            });
           break;
 
         case "input.totalloandisbursed":
