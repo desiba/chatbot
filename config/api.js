@@ -38,6 +38,7 @@ getRes('total number of users').then(function(res){console.log(res)});
 getRes('total loan disbursed').then(function(res){console.log(res)});
 getRes('total disbursment for today').then(function(res){console.log(res)});
 getRes('who linked this card 418742 9594').then(function(res){console.log(res)});
+getRes('why user was banned 24497').then(function(res){console.log(res)});
 
 
 
