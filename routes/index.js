@@ -118,6 +118,25 @@ router.post('/users', (req, res) => {
        
           break;
 
+        case "input.userbannedreason":
+
+            let userid = parameters.number;
+            let email = parameters.email;
+
+            dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid}`,  (error, data) => {
+              if (error) throw error;
+              
+              let user_ban_details = {
+                fulfillmentText: JSON.stringify(data),
+              }
+              res.json(user_ban_details);
+
+          });
+
+
+
+        break;
+
         case "input.linkcard":
           
             let account_digits_list = parameters.number;
