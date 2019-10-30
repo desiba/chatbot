@@ -137,7 +137,7 @@ router.post('/users', (req, res) => {
             console.log(results);
             console.log(firstdigits +' '+ lastdigits);
 
-            dbConn.query(`select email from user_cards where last4 = ${results[1]} and bin = ${results[0]}`,  (error, data) => {
+            dbConn.query(`select email from user_cards where last4 = ${last4digits} and bin = ${first6digits}`,  (error, data) => {
                 if (error) throw error;
 
                 let user_email = {
