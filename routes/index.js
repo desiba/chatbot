@@ -131,6 +131,8 @@ router.post('/users', (req, res) => {
             let firstdigits = (/[0-9]{6}/.first6digits) ? first6digits : last4digits;
             let lastdigits = (/[0-9]{4}/.last4digits) ? last4digits : first6digits;
 
+            console.log(results[0]);
+            console.log(results[1]);
             console.log(results);
             console.log(firstdigits +' '+ lastdigits);
 
