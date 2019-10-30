@@ -136,10 +136,10 @@ router.post('/users', (req, res) => {
 
               
               let user_ban_details = {
-                fulfillmentText:  "ban starts " +ban_start + 
-                                  " ban ends " +ban_ends +
-                                  " status " + active +
-                                  " reason "+ note,
+                fulfillmentText:  "Ban Starts: " +ban_start + 
+                                  "\nBan Ends: " +ban_ends +
+                                  "\nStatus: " + active +
+                                  "\nReason: "+ note,
               }
               res.json(user_ban_details);
 
