@@ -137,7 +137,9 @@ router.post('/webhook', (req, res) => {
 
 
             dbConn.query(`select email from user_cards where last4 = ${account_digits_list[1]} and bin = ${account_digits_list[0]}`,  (error, data) => {
-              if(data != undefined){
+              console.log(data);
+              
+              if(data != undefined || data != null){
                 if (error) throw error;
                   
                   let user_email = {
