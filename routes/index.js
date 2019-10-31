@@ -108,8 +108,9 @@ router.post('/webhook', (req, res) => {
         case "input.userbannedreason":
 
             let userid = parameters.number;
-            console.log(userid);
-            
+
+            console.log(req.body.queryResult.parameters.number);
+
             let email = parameters.email;
 
             if(userid != null){
