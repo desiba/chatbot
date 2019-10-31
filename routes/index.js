@@ -102,7 +102,7 @@ router.post('/webhook', async (req, res) => {
 
             let email = parameters.email;
 
-            userservice.user_banned_reasons(userid, email, req, res);
+            userservices.user_banned_reasons(userid, email, req, res);
 
         break;
 
