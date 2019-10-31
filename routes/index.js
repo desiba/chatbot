@@ -42,7 +42,7 @@ return res.status(200).json({
 
 
 
-router.post('/webhook', (req, res) => {
+router.post('/webhook', async (req, res) => {
 
       const action = req.body.queryResult.action;
       let parameters = req.body.queryResult.parameters;
@@ -136,11 +136,12 @@ router.post('/webhook', (req, res) => {
            
 
 
-            dbConn.query(`select email from user_cards where last4 = ${account_digits_list[1]} and bin = ${account_digits_list[0]}`,  (error, data) => {
+           await dbConn.query(`select email from user_cards where last4 = ${account_digits_list[1]} and bin = ${account_digits_list[0]}`,  (error, data) => {
               console.log("data = " +data);
 
-              if (error) throw error;
-              
+              if (!data.length)
+                  throw new Errors.NotFound('not found');
+            /*
               if (error) {
                 console.log(error);
                 let user_email = {
@@ -149,7 +150,7 @@ router.post('/webhook', (req, res) => {
                 res.json(user_email);
                 
               }
-
+*/
               //if(data !== undefined || data.length > 0){
                 //if (error) throw error;
                   
