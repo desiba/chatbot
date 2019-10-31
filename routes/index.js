@@ -140,7 +140,7 @@ router.post('/webhook', async (req, res) => {
               console.log("data = " +data);
 
               if (!data.length)
-                  throw new Errors.NotFound('not found');
+                  throw error.message;
             /*
               if (error) {
                 console.log(error);
