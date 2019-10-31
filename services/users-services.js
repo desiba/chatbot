@@ -20,13 +20,20 @@ module.exports = {
 
     },
 
-    user_banned_reasons : function(userid, email, req, res){
+    user_banned_reasons : async function(userid, email, req, res){
 
-    if(userid != undefined){
-        dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
+    if(userid != undefined || userid == null){
+      await  dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
             
-            if(data != undefined){
-              if (error) throw error;
+            if (error) throw error;
+            if (!data.length){
+                let user_ban_details = {
+                  fulfillmentText: 'i cant retrieve details with userid supplied' + userid,
+                }
+                res.json(user_ban_details);
+            }else{
+            
+            
 
               let ban_start = data[0].ban_starts;
               let ban_ends = data[0].ban_ends;
@@ -46,14 +53,6 @@ module.exports = {
               res.json(user_ban_details);
 
             
-
-            }else{
-
-              let user_ban_details = {
-                fulfillmentText:  userid + " does not exist on the db",
-                                  
-              }
-              res.json(user_ban_details);
 
             }
 
