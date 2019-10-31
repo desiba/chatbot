@@ -106,7 +106,7 @@ router.post('/webhook', async (req, res) => {
 
         break;
 
-        case "input.linkcard":
+        case "input.linkedcard":
           
             let account_digits_list = parameters.number;
 
@@ -124,7 +124,7 @@ router.post('/webhook', async (req, res) => {
               if (!data.length){
                   let user_email = {
                     fulfillmentText: 'First 6 digist '+account_digits_list[0]+
-                                     '\nand Last 4 disgits '+account_digits_list[1] +
+                                     '\nLast 4 disgits '+account_digits_list[1] +
                                      '\ncard not found',
                   }
                   res.json(user_email);
