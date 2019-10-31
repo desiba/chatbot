@@ -139,12 +139,12 @@ router.post('/webhook', async (req, res) => {
            await dbConn.query(`select email from user_cards where last4 = ${account_digits_list[1]} and bin = ${account_digits_list[0]}`,  (error, data) => {
               console.log("data = " +data);
 
-              if (!data.length)
+              if (!data.length){
                   let user_email = {
                     fulfillmentText: 'First 6 digist'+account_digits_list[0]+' and Last 4 disgits '+account_digits_list[1] +' card not found',
                   }
                   res.json(user_email);
-                  
+              }
             /*
               if (error) {
                 console.log(error);
