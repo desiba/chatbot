@@ -96,13 +96,13 @@ router.post('/webhook', async (req, res) => {
 
         case "input.userbannedreason":
 
-            let userid = parameters.number;
+            let id = parameters.id;
 
             console.log(req.body.queryResult.parameters.number);
 
-            let email = parameters.email;
+           // let email = parameters.email;
 
-            userservices.user_banned_reasons(userid, email, req, res);
+            userservices.user_banned_reasons(id, req, res);
 
         break;
 
