@@ -22,9 +22,10 @@ module.exports = {
 
     user_banned_reasons : function(userid, email, req, res){
 
-    if(userid != null){
+    if(userid != undefined){
         dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
-            if(data != null){
+            
+            if(data != undefined){
               if (error) throw error;
 
               let ban_start = data[0].ban_starts;
@@ -58,6 +59,14 @@ module.exports = {
 
           });
           
+
+        }else{
+            //if userid isnt used check for email of the user
+            let user_ban_details = {
+                fulfillmentText:  "search with email",
+                                  
+              }
+              res.json(user_ban_details);
 
         }
     }
