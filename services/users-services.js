@@ -22,10 +22,8 @@ module.exports = {
 
     user_banned_reasons : async function(id, req, res){
 
-        //let sql = (email == null || email == undefined) ?  : ;
-        //SELECT ban_starts, ban_ends, active, note FROM user_bans WHERE user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1
 
-    if(id != undefined || id == null){
+    if(id != undefined || id != null){
       await  dbConn.query(`SELECT b.ban_starts, b.ban_ends, active, note 
                             FROM users u left 
                             JOIN user_bans b ON u.id = b.user_id 
@@ -73,7 +71,7 @@ module.exports = {
         }else{
             //if userid isnt used check for email of the user
             let user_ban_details = {
-                fulfillmentText:  "search with email",
+                fulfillmentText:  "missing id (email, phonenumber or userid)",
                                   
               }
               res.json(user_ban_details);
