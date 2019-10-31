@@ -144,6 +144,12 @@ router.post('/webhook', async (req, res) => {
                     fulfillmentText: 'First 6 digist'+account_digits_list[0]+' and Last 4 disgits '+account_digits_list[1] +' card not found',
                   }
                   res.json(user_email);
+              }else{
+                let user_email = {
+                  fulfillmentText: data[0].email +' '+ data[1].email,
+                }
+                res.json(user_email);
+           
               }
             /*
               if (error) {
@@ -158,11 +164,7 @@ router.post('/webhook', async (req, res) => {
               //if(data !== undefined || data.length > 0){
                 //if (error) throw error;
                   
-                  let user_email = {
-                    fulfillmentText: data[0].email +' '+ data[1].email,
-                  }
-                  res.json(user_email);
-             
+                 
               
 
             });
