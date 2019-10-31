@@ -140,7 +140,11 @@ router.post('/webhook', async (req, res) => {
               console.log("data = " +data);
 
               if (!data.length)
-                  throw error.message;
+                  let user_email = {
+                    fulfillmentText: 'First 6 digist'+account_digits_list[0]+' and Last 4 disgits '+account_digits_list[1] +' card not found',
+                  }
+                  res.json(user_email);
+                  
             /*
               if (error) {
                 console.log(error);
