@@ -53,7 +53,7 @@ router.post('/webhook', (req, res) => {
 
       switch(action) {
 
-        
+
         case "input.totalusers":
 
             dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
@@ -108,6 +108,8 @@ router.post('/webhook', (req, res) => {
         case "input.userbannedreason":
 
             let userid = parameters.number;
+            console.log(userid);
+            
             let email = parameters.email;
 
             if(userid != null){
