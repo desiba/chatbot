@@ -110,8 +110,16 @@ router.post('/webhook', (req, res) => {
           
             let account_digits_list = parameters.number;
 
-            
+            if(account_digits_list[0].toString().length != 6){
+                var temp = account_digits_list[0];
+                account_digits_list[0] = account_digits_list[1];
+                account_digits_list[1] = temp;
 
+            }
+
+            console.log(account_digits_list);
+
+            //[first6, last4]
             //let results = JSON.stringify(account_digits_list);
             //let results = account_digits_list;
             //let first6digits = results[0];
@@ -125,11 +133,7 @@ router.post('/webhook', (req, res) => {
             //console.log(results);
             //console.log(firstdigits +' '+ lastdigits);
 
-            let firstdigits = account_digits_list[0];
-            let lastdigits = account_digits_list[1];
-
-            console.log(firstdigits);
-            console.log(lastdigits);
+           
 
 
             dbConn.query(`select email from user_cards where last4 = 9594 and bin = 418742`,  (error, data) => {
