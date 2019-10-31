@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var userservices = require('../services/users-services');
 var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
 
@@ -56,19 +57,7 @@ router.post('/webhook', (req, res) => {
 
         case "input.totalusers":
 
-            dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
-              if (error) throw error;
-
-                let res_total_users = data[0].totalusers;
-
-                  console.log(JSON.stringify(data));
-             
-                  let total_users_response = {
-                    fulfillmentText: thousands(res_total_users),
-                  }
-                  res.json(total_users_response);
-                          
-              });
+           userservices.total_users();
           
           break;
 
@@ -239,6 +228,9 @@ router.post('/total_loan_disbursed', (req, res) => {
 
   });
 });
+
+
+
 
 
 
