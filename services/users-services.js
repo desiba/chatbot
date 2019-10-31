@@ -26,7 +26,10 @@ module.exports = {
         //SELECT ban_starts, ban_ends, active, note FROM user_bans WHERE user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1
 
     if(id != undefined || id == null){
-      await  dbConn.query(`select u.id, email from users u left join user_bans b on u.id = b.user_id where (email = ${id} or u.id = ${id}) and b.active = 1`,  (error, data) => {
+      await  dbConn.query(`SELECT b.ban_starts, b.ban_ends, active, note 
+                            FROM users u left 
+                            JOIN user_bans b ON u.id = b.user_id 
+                            WHERE (email = ${id} or u.id = ${id}) and b.active = 1`,  (error, data) => {
             
             if (error) throw error;
             if (!data.length){
