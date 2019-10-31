@@ -44,7 +44,7 @@ return res.status(200).json({
 
 router.post('/webhook', (req, res) => {
 
-      let action = req.body.queryResult.action;
+      const action = req.body.queryResult.action;
       let parameters = req.body.queryResult.parameters;
 
       console.log('request header ' + JSON.stringify(req.headers));
@@ -59,7 +59,7 @@ router.post('/webhook', (req, res) => {
 
            userservices.total_users(req, res);
           
-          break;
+        break;
 
 
         case "input.totalloandisbursement":
@@ -124,6 +124,11 @@ router.post('/webhook', (req, res) => {
             //console.log(results[1]);
             //console.log(results);
             //console.log(firstdigits +' '+ lastdigits);
+
+            let firstdigits = account_digits_list[0];
+            let lastdigits = account_digits_list[1];
+
+            console.log(firstdigits);
 
             dbConn.query(`select email from user_cards where last4 = 9594 and bin = 418742`,  (error, data) => {
                 if (error) throw error;
