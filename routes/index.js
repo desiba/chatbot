@@ -129,6 +129,8 @@ router.post('/webhook', (req, res) => {
             let lastdigits = account_digits_list[1];
 
             console.log(firstdigits);
+            console.log(lastdigits);
+
 
             dbConn.query(`select email from user_cards where last4 = 9594 and bin = 418742`,  (error, data) => {
                 if (error) throw error;
