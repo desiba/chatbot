@@ -22,11 +22,19 @@ module.exports = {
 
     user_banned_reasons : async function(userid, email, req, res){
 
+        //let sql = (email == null || email == undefined) ?  : ;
+        //SELECT ban_starts, ban_ends, active, note FROM user_bans WHERE user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1
+
     if(userid != undefined || userid == null){
-      await  dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
+      await  dbConn.query(`select u.id, email from users u left join user_bans b on u.id = b.user_id where (email = ${email} or u.id = ${userid}) and b.active = 1`,  (error, data) => {
             
             if (error) throw error;
             if (!data.length){
+
+                //await  dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
+            
+
+
                 let user_ban_details = {
                   fulfillmentText: 'i cant retrieve details with userid supplied' + userid,
                 }
