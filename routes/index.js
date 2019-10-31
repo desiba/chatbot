@@ -117,31 +117,15 @@ router.post('/webhook', async (req, res) => {
 
             }
 
-            console.log(account_digits_list);
-
-            //[first6, last4]
-            //let results = JSON.stringify(account_digits_list);
-            //let results = account_digits_list;
-            //let first6digits = results[0];
-            //let last4digits = results[1];
-
-            //let firstdigits = (/^(\d{6})$/.results[0]) ? 'passed' : 'failed';
-            //let lastdigits = (/^(\d{4})$/.results[1]) ? 'passed' : 'failed';
-
-            //console.log(results[0]);
-            //console.log(results[1]);
-            //console.log(results);
-            //console.log(firstdigits +' '+ lastdigits);
-
            
-
-
            await dbConn.query(`select email from user_cards where last4 = ${account_digits_list[1]} and bin = ${account_digits_list[0]}`,  (error, data) => {
-              //console.log("data = " +data);
+              
               if (error) throw error;
               if (!data.length){
                   let user_email = {
-                    fulfillmentText: 'First 6 digist'+account_digits_list[0]+' and Last 4 disgits '+account_digits_list[1] +' card not found',
+                    fulfillmentText: 'First 6 digist '+account_digits_list[0]+
+                                     '\nand Last 4 disgits '+account_digits_list[1] +
+                                     '\ncard not found',
                   }
                   res.json(user_email);
               }else{
@@ -151,22 +135,6 @@ router.post('/webhook', async (req, res) => {
                 res.json(user_email);
            
               }
-            /*
-              if (error) {
-                console.log(error);
-                let user_email = {
-                  fulfillmentText: 'First 6 digist'+account_digits_list[0]+' and Last 4 disgits '+account_digits_list[1] +' card not found',
-                }
-                res.json(user_email);
-                
-              }
-*/
-              //if(data !== undefined || data.length > 0){
-                //if (error) throw error;
-                  
-                 
-              
-
             });
           break;
 
