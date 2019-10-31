@@ -57,7 +57,7 @@ router.post('/webhook', (req, res) => {
 
         case "input.totalusers":
 
-           userservices.total_users();
+           userservices.total_users(req, res);
           
           break;
 

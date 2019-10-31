@@ -4,7 +4,7 @@ const thousands = require('thousands');
 
 module.exports = {
 
-    total_users : function(){
+    total_users : function(req, res){
 
         dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
             if (error) throw error;
