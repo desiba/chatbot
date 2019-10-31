@@ -52,6 +52,8 @@ router.post('/webhook', (req, res) => {
 
 
       switch(action) {
+
+        
         case "input.totalusers":
 
             dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {
@@ -108,8 +110,10 @@ router.post('/webhook', (req, res) => {
             let userid = parameters.number;
             let email = parameters.email;
 
+            if(userid != null){
+
             dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
-              if(data == null){
+              if(data != null){
                 if (error) throw error;
 
                 let ban_start = data[0].ban_starts;
@@ -129,6 +133,8 @@ router.post('/webhook', (req, res) => {
                 }
                 res.json(user_ban_details);
 
+              
+
               }else{
 
                 let user_ban_details = {
@@ -140,7 +146,13 @@ router.post('/webhook', (req, res) => {
               }
 
             });
-          
+            }else{
+              let user_ban_details = {
+                fulfillmentText:  "user id is missing",
+                                  
+              }
+              res.json(user_ban_details);
+            }
 
 
         break;
