@@ -58,15 +58,52 @@ router.post('/webhook', async (req, res) => {
 
       switch(action) {
 
-        case "input.totalloansdisburseddate":
-            let findate = parameters.findate;
-            let date;
-            if(findate != "" && findate != null && findate != undefined){
-                 console.log(findate);
-                 break;
+        case "input.totalloansbyrange":
+            let req_match_month = /\bMONTH|\bthis month|\bmonth/g.req.body.queryResult.queryText;
+            let req_match_week = /\bWEEK|\bthis week|\bweek/g.req.body.queryResult.queryText;
+
+            let range;
+            if(req_match_month){
+                console.log(start_date_month +' '+ end_date_month);
+               let start_date_month =  JSON.stringify(now.startOf('month'));
+               let end_date_month = JSON.stringify(now.endOf('month'));
+               range = {
+                 start_date_month,
+                 end_date_month
+               }
+            }else if(req_match_week){
+
+              console.log(start_date_week +' '+ end_date_week)
+
+              let start_date_week =  JSON.stringify(now.startOf('week'));
+              let end_date_week = JSON.stringify(now.endOf('week'));
+              range = {
+                start : start_date_week,
+                end : end_date_week
+              }
             }else{
-                 date =  JSON.stringify(now.format("YYYY-MM-DD"));
+
+              let default_response = {
+                fulfillmentText: "please specify if you want the total loan for the week or for the month",
+              }
+              res.json(default_response);
+
+
             }
+            
+            loanservices.total_loan_disbursed_range(range, req, res);
+        break;
+
+        case "input.totalloansdisburseddate":
+            //let findate = parameters.findate;
+            let date = JSON.stringify(now.format("YYYY-MM-DD"));
+           // if(findate != "" && findate != null && findate != undefined){
+                  //[ "2010-12-10T12:00:00+01:00" ]
+                 //console.log(findate);
+                 
+           // }else{
+                 //date =  JSON.stringify(now.format("YYYY-MM-DD"));
+           // }
 
             loanservices.total_loans_date(date, req, res);
 

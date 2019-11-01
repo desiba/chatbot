@@ -43,6 +43,8 @@ request.end();
 //getRes('why user was banned 24497').then(function(res){console.log(res)});
 //getRes('why user was banned 4747489').then(function(res){console.log(res)});
 getRes('loans disbursed for 2010-10-12').then(function(res){console.log(res)});
+getRes('loan disbursed for this month').then(function(res){console.log(res)});
+
 
 
 

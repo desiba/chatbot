@@ -4,11 +4,26 @@ const thousands = require('thousands');
 
 module.exports = {
 
+    total_loan_disbursed_range : function(range, req, res){
+        let {start, end} = range;
+        dbConn.query(`SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${start} AND loan_ends = ${end}`,  (error, data) => {
+            if (error) throw error;
+  
+                console.log(data);
+  
+                let result_total_disbursment = data[0].total_loan_disbursed
+                
+                let total_loan_response = {
+                  fulfillmentText: thousands(result_total_disbursment),
+                }
+                res.json(total_loan_response);
+                        
+            });
+
+
+    },
+
      total_loans_date : function(date, req, res){
-
-        
-
-
         dbConn.query(`SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${date}`,  (error, data) => {
           if (error) throw error;
 
