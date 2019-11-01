@@ -74,8 +74,7 @@ router.post('/webhook', async (req, res) => {
                }
             }else if(req_match_week){
 
-              console.log('week: '+ req_match_week);
-              break;
+             
 
               let weekStart =  now.startOf('week').format("YYYY-MM-DD");
               let weekEnd = now.endOf('week').format("YYYY-MM-DD");
@@ -83,6 +82,8 @@ router.post('/webhook', async (req, res) => {
                 start : weekStart,
                 end : weekEnd
               }
+
+              console.log(range);
             }else{
 
               let default_response = {
