@@ -65,8 +65,7 @@ router.post('/webhook', async (req, res) => {
             let req_match_month = /\bMONTH|\bthis month|\bmonth/g.test(qryText);
             let req_match_week = /\bWEEK|\bthis week|\bweek/g.test(qryText);
 
-            console.log(req_match_month);
-            break;
+          
 
             let range;
             if(req_match_month){
@@ -99,7 +98,6 @@ router.post('/webhook', async (req, res) => {
 
             console.log(range);
 
-            break;
             
             loanservices.total_loan_disbursed_range(range, req, res);
         break;
