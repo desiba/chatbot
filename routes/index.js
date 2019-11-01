@@ -52,7 +52,7 @@ router.post('/webhook', async (req, res) => {
             let qryText = JSON.stringify(req.body.queryResult.queryText);
 
             let req_match_month = /\bMONTH|\bthis month|\bmonth/g.test(qryText);
-            let req_match_week = /\bWEEK|\bthis week|\b week/g.test(qryText);
+            let req_match_week = /\bWEEK|\bthis week|\bweek/g.test(qryText);
 
           
 
@@ -86,9 +86,7 @@ router.post('/webhook', async (req, res) => {
 
         case "input.totalloansdisburseddate":
             //let findate = parameters.findate;
-            let today_date = JSON.stringify(now.format("YYYY-MM-DD"));
-             console.log(today_date);
-
+            const today_date = JSON.stringify(now.format("YYYY-MM-DD"));
             loanservices.total_loans_date(today_date, req, res);
 
         break;
