@@ -96,9 +96,6 @@ router.post('/webhook', async (req, res) => {
 
             }
 
-            console.log(range);
-
-            
             loanservices.total_loan_disbursed_range(range, req, res);
         break;
 
