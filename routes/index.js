@@ -72,6 +72,9 @@ router.post('/webhook', async (req, res) => {
                  start : monthStart,
                  end : monthEnd
                }
+
+               loanservices.total_loan_disbursed_range(range, req, res);
+
             }
              
             if(req_match_week){
@@ -81,9 +84,11 @@ router.post('/webhook', async (req, res) => {
                 start : weekStart,
                 end : weekEnd
               }
+
+              loanservices.total_loan_disbursed_range(range, req, res);
             }
 
-            loanservices.total_loan_disbursed_range(range, req, res);
+           
         break;
 
         case "input.totalloansdisburseddate":
