@@ -68,30 +68,19 @@ router.post('/webhook', async (req, res) => {
                let monthStart = now.startOf('month').format("YYYY-MM-DD"),
                 monthEnd = now.endOf('month').format("YYYY-MM-DD");
                
-               range = {
+              range = {
                  start : monthStart,
                  end : monthEnd
                }
-            }else if(req_match_week){
-
+            }
              
-
+            if(req_match_week){
               let weekStart =  now.startOf('week').format("YYYY-MM-DD");
               let weekEnd = now.endOf('week').format("YYYY-MM-DD");
               range = {
                 start : weekStart,
                 end : weekEnd
               }
-
-              console.log(range);
-            }else{
-
-              let default_response = {
-                fulfillmentText: "please specify if you want the total loan for the week or for the month",
-              }
-              res.json(default_response);
-
-
             }
 
             loanservices.total_loan_disbursed_range(range, req, res);
