@@ -72,13 +72,12 @@ router.post('/webhook', async (req, res) => {
                let monthStart = now.startOf('month').format("YYYY-MM-DD");
                let monthEnd = now.endOf('month').format("YYYY-MM-DD");
                
-               let start_date_month =  JSON.stringify(monthStart);
-               let end_date_month = JSON.stringify(monthEnd);
+              
                
 
                range = {
-                 start_date_month,
-                 end_date_month
+                 monthStart,
+                 monthEnd
                }
             }else if(req_match_week){
 
