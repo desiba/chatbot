@@ -101,7 +101,7 @@ router.post('/webhook', async (req, res) => {
 
         case "input.totalloansdisburseddate":
             //let findate = parameters.findate;
-            let date = now.format("YYYY-MM-DD");
+            let date = JSON.stringify(now.format("YYYY-MM-DD"));
            // if(findate != "" && findate != null && findate != undefined){
                   //[ "2010-12-10T12:00:00+01:00" ]
                  //console.log(findate);
