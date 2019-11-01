@@ -12,6 +12,8 @@ module.exports = {
 
         dbConn.query(`SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${today}`,  (error, data) => {
           if (error) throw error;
+          
+              console.log(data);
 
               let result_total_disbursment = data[0].total_loan_disbursed
               
