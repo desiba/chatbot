@@ -51,10 +51,6 @@ router.post('/webhook', async (req, res) => {
       const action = req.body.queryResult.action;
       let parameters = req.body.queryResult.parameters;
 
-      console.log('request header ' + JSON.stringify(req.headers));
-      console.log('request body ' + JSON.stringify(req.body));
-      console.log('Action ' + JSON.stringify(action));
-
 
       switch(action) {
 
@@ -63,14 +59,14 @@ router.post('/webhook', async (req, res) => {
             let qryText = JSON.stringify(req.body.queryResult.queryText);
 
             let req_match_month = /\bMONTH|\bthis month|\bmonth/g.test(qryText);
-            let req_match_week = /\bWEEK|\bthis week|\bweek/g.test(qryText);
+            let req_match_week = /\bWEEK|\bthis week|\b week/g.test(qryText);
 
           
 
             let range;
             if(req_match_month){
-               let monthStart = now.startOf('month').format("YYYY-MM-DD");
-               let monthEnd = now.endOf('month').format("YYYY-MM-DD");
+               let monthStart = now.startOf('month').format("YYYY-MM-DD"),
+                monthEnd = now.endOf('month').format("YYYY-MM-DD");
                
                range = {
                  start : monthStart,
@@ -78,7 +74,8 @@ router.post('/webhook', async (req, res) => {
                }
             }else if(req_match_week){
 
-              
+              console.log('week: '+ req_match_week);
+              break;
 
               let weekStart =  now.startOf('week').format("YYYY-MM-DD");
               let weekEnd = now.endOf('week').format("YYYY-MM-DD");
@@ -102,13 +99,7 @@ router.post('/webhook', async (req, res) => {
         case "input.totalloansdisburseddate":
             //let findate = parameters.findate;
             let date = JSON.stringify(now.format("YYYY-MM-DD"));
-           // if(findate != "" && findate != null && findate != undefined){
-                  //[ "2010-12-10T12:00:00+01:00" ]
-                 //console.log(findate);
-                 
-           // }else{
-                 //date =  JSON.stringify(now.format("YYYY-MM-DD"));
-           // }
+             console.log(date);
 
             loanservices.total_loans_date(date, req, res);
 
