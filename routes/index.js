@@ -69,9 +69,11 @@ router.post('/webhook', async (req, res) => {
 
             let range;
             if(req_match_month){
-                console.log(start_date_month +' '+ end_date_month);
+                
                let start_date_month =  JSON.stringify(now.startOf('month'));
                let end_date_month = JSON.stringify(now.endOf('month'));
+               console.log(start_date_month +' '+ end_date_month);
+               
                range = {
                  start_date_month,
                  end_date_month
