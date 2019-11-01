@@ -60,7 +60,7 @@ router.post('/webhook', async (req, res) => {
 
         case "input.totalloansbyrange":
             let qryText = JSON.stringify(req.body.queryResult.queryText);
-            
+
             let req_match_month = /\bMONTH|\bthis month|\bmonth/g.qryText;
             let req_match_week = /\bWEEK|\bthis week|\bweek/g.qryText;
 
@@ -92,6 +92,10 @@ router.post('/webhook', async (req, res) => {
 
 
             }
+
+            console.log(range);
+
+            break;
             
             loanservices.total_loan_disbursed_range(range, req, res);
         break;
