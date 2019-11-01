@@ -6,6 +6,8 @@ module.exports = {
 
     total_loan_disbursed_range : function(range, req, res){
         let {start, end} = range;
+        console.log(range);
+        
         dbConn.query(`SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts BETWEEN ${start} AND ${end} `,  (error, data) => {
             if (error) throw error;
   
