@@ -2,11 +2,13 @@ var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
  const moment = require('moment');
 
+ let now = moment();
+
 module.exports = {
 
      total_loans_date : function(req, res){
 
-        let today =  moment.format("YYYY-MM-DD");
+        let today =  now.format("YYYY-MM-DD");
 
         dbConn.query(`SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${today}`,  (error, data) => {
           if (error) throw error;
