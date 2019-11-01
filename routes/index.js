@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var userservices = require('../services/users-services');
+var userservices = require('../services/users_services');
+var loanservices = require('../services/loan_services');
 var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
 
@@ -56,10 +57,7 @@ router.post('/webhook', async (req, res) => {
 
         case "input.totalloansdisburseddate":
 
-            let total_loan_disburement_response = {
-              fulfillmentText: 'this is coming from desmond webhook',
-            }
-            res.json(total_loan_disburement_response);
+            loanservices.total_loans_date(req, res);
 
         break;
 
