@@ -56,8 +56,15 @@ router.post('/webhook', async (req, res) => {
       switch(action) {
 
         case "input.totalloansdisburseddate":
+            let findate = parameters.findate;
+            let date;
+            if(findate != "" && findate != null && findate != undefined){
+                 console.log(findate);
+            }else{
+                 date =  JSON.stringify(now.format("YYYY-MM-DD"));
+            }
 
-            loanservices.total_loans_date(req, res);
+            loanservices.total_loans_date(date, req, res);
 
         break;
 
