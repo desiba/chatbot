@@ -25,15 +25,15 @@ module.exports = {
     },
 
      total_loans_date : async function(date, req, res){
-        await dbConn.query(`SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${date}`,  (error, data) => {
+        await dbConn.query(`SELECT SUM(amount) AS total_loan_by_date FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${date}`,  (error, data) => {
           if (error) throw error;
 
-              console.log(data);
+             
 
-              let result_total_disbursment = data[0].total_loan_disbursed
+              let result_total_disbursment_by_date = data[0].total_loan_by_date
               
               let total_loan_response = {
-                fulfillmentText: thousands(result_total_disbursment),
+                fulfillmentText: thousands(result_total_disbursment_by_date),
               }
               res.json(total_loan_response);
                       
