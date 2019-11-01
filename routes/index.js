@@ -62,8 +62,8 @@ router.post('/webhook', async (req, res) => {
 
             let qryText = JSON.stringify(req.body.queryResult.queryText);
 
-            let req_match_month = /\bMONTH|\bthis month|\bmonth/g.qryText;
-            let req_match_week = /\bWEEK|\bthis week|\bweek/g.qryText;
+            let req_match_month = /\bMONTH|\bthis month|\bmonth/g.test(qryText);
+            let req_match_week = /\bWEEK|\bthis week|\bweek/g.test(qryText);
 
             console.log(req_match_month);
             break;
