@@ -4,6 +4,9 @@ var userservices = require('../services/users_services');
 var loanservices = require('../services/loan_services');
 var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
+const moment = require('moment');
+
+let now = moment();
 
 
 

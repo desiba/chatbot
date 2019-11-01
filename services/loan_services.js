@@ -1,8 +1,6 @@
 var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
- const moment = require('moment');
 
- let now = moment();
 
 module.exports = {
 
