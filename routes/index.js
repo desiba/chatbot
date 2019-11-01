@@ -33,14 +33,7 @@ return res.status(200).json({
     displayText: "hello from webhook",
     source: "hello world from webhook"
  });
- //return res.send({
-    //text:"hello world from webhook"
-  //});
-  
-   //return res.status(200).json({
-        //displayText:"hello world from webhook"
-     // });
-      
+ 
 });
 
 
@@ -65,7 +58,7 @@ router.post('/webhook', async (req, res) => {
 
             let range;
             if(req_match_month){
-               let monthStart = now.startOf('month').format("YYYY-MM-DD"),
+               const monthStart = now.startOf('month').format("YYYY-MM-DD"),
                 monthEnd = now.endOf('month').format("YYYY-MM-DD");
                
               range = {
@@ -78,8 +71,8 @@ router.post('/webhook', async (req, res) => {
             }
              
             if(req_match_week){
-              let weekStart =  now.startOf('week').format("YYYY-MM-DD");
-              let weekEnd = now.endOf('week').format("YYYY-MM-DD");
+              const weekStart =  now.startOf('week').format("YYYY-MM-DD"),
+               weekEnd = now.endOf('week').format("YYYY-MM-DD");
               range = {
                 start : weekStart,
                 end : weekEnd
@@ -93,10 +86,10 @@ router.post('/webhook', async (req, res) => {
 
         case "input.totalloansdisburseddate":
             //let findate = parameters.findate;
-            let date = JSON.stringify(now.format("YYYY-MM-DD"));
-             console.log(date);
+            let today_date = JSON.stringify(now.format("YYYY-MM-DD"));
+             console.log(today_date);
 
-            loanservices.total_loans_date(date, req, res);
+            loanservices.total_loans_date(today_date, req, res);
 
         break;
 
