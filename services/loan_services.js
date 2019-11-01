@@ -8,7 +8,7 @@ module.exports = {
 
      total_loans_date : function(req, res){
 
-        let today =  now.format("YYYY-MM-DD");
+        let today =  JSON.stringify(now.format("YYYY-MM-DD"));
 
         console.log(today);
 
