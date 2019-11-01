@@ -59,6 +59,8 @@ router.post('/webhook', async (req, res) => {
       switch(action) {
 
         case "input.totalloansbyrange":
+             console.log(req.body.queryResult.queryText);
+             break;
             let req_match_month = /\bMONTH|\bthis month|\bmonth/g.req.body.queryResult.queryText;
             let req_match_week = /\bWEEK|\bthis week|\bweek/g.req.body.queryResult.queryText;
 
