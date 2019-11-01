@@ -54,6 +54,15 @@ router.post('/webhook', async (req, res) => {
 
       switch(action) {
 
+        case "input.totalloansdisburseddate":
+
+            let total_loan_disburement_response = {
+              fulfillmentText: 'this is coming from desmond webhook',
+            }
+            res.json(total_loan_disburement_response);
+
+        break;
+
 
         case "input.totalusers":
 
@@ -109,8 +118,10 @@ router.post('/webhook', async (req, res) => {
         case "input.linkedcard":
           
             let account_digits_list = parameters.number;
-            //let card_month = parameters.card_month;
-            //let card_year = parameters.card_year; 
+            let card_month = parameters.card_month;
+            let card_year = parameters.card_year; 
+
+            
 
             if(account_digits_list[0].toString().length != 6){
                 var temp = account_digits_list[0];
@@ -118,10 +129,13 @@ router.post('/webhook', async (req, res) => {
                 account_digits_list[1] = temp;
 
             }
-
-            // and exp_month = ${card_month} and exp_year = ${card_year}
            
-           await dbConn.query(`select email from user_cards where last4 = ${account_digits_list[1]} and bin = ${account_digits_list[0]}`,  (error, data) => {
+           await dbConn.query(`SELECT email
+                               FROM user_cards 
+                               WHERE last4 = ${account_digits_list[1]} AND 
+                                      bin = ${account_digits_list[0]} AND 
+                                      exp_month = ${card_month} AND 
+                                      exp_year = ${card_year}`,  (error, data) => {
               
               if (error) throw error;
               if (!data.length){
