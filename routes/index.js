@@ -63,6 +63,7 @@ router.post('/webhook', async (req, res) => {
             let date;
             if(findate != "" && findate != null && findate != undefined){
                  console.log(findate);
+                 break;
             }else{
                  date =  JSON.stringify(now.format("YYYY-MM-DD"));
             }
