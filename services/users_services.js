@@ -20,11 +20,11 @@ module.exports = {
 
     },
 
-    user_banned_reasons : async function(id, req, res){
+    user_banned_reasons : function(id, req, res){
 
 
     if(id != undefined || id != null){
-      await  dbConn.query(`SELECT b.ban_starts, b.ban_ends, active, note 
+        dbConn.query(`SELECT b.ban_starts, b.ban_ends, active, note 
                             FROM users u left 
                             JOIN user_bans b ON u.id = b.user_id 
                             WHERE (email = ${id} or u.id = ${id}) and b.active = 1`,  (error, data) => {
