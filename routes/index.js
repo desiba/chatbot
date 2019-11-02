@@ -130,13 +130,19 @@ router.post('/webhook', async (req, res) => {
                 account_digits_list[1] = temp;
 
             }
-           if(/ˆ[0-9]{6}/.test(account_digits_list[0]) && /ˆ[0-9]{4}/.test(account_digits_list[1]) && /ˆ[0-9]{2}/.test(card_date_list[0]) && /ˆ[0-9]{4}/.test(card_date_list[1])){
+
+            let first6digits = account_digits_list[0].trim();
+            let last4digits = account_digits_list[1].trim();
+            let cardmonth = card_date_list[0].trim();
+            let cardyear = card_date_list[1].trim();
+
+           if(/ˆ[0-9]{6}/.test(first6digits) && /ˆ[0-9]{4}/.test(last4digits) && /ˆ[0-9]{2}/.test(cardmonth) && /ˆ[0-9]{4}/.test(cardyear)){
            await dbConn.query(`SELECT email
                                FROM user_cards 
-                               WHERE last4 = ${account_digits_list[1]} AND 
-                                      bin = ${account_digits_list[0]} AND 
-                                      exp_month = ${card_date_list[0]} AND 
-                                      exp_year = ${card_date_list[1]}`,  (error, data) => {
+                               WHERE last4 = ${last4digits} AND 
+                                      bin = ${first6digits} AND 
+                                      exp_month = ${cardmonth} AND 
+                                      exp_year = ${cardyear}`,  (error, data) => {
               console.log(data);
               if (error) throw error;
               if (!data.length){
