@@ -130,7 +130,7 @@ router.post('/webhook', async (req, res) => {
                 account_digits_list[1] = temp;
 
             }
-           
+           if(/ˆ[0-9]{6}/.test(account_digits_list[0]) && /ˆ[0-9]{4}/.test(account_digits_list[1]) && /ˆ[0-9]{2}/.test(card_date_list[0]) && /ˆ[0-9]{4}/.test(card_date_list[1])){
            await dbConn.query(`SELECT email
                                FROM user_cards 
                                WHERE last4 = ${account_digits_list[1]} AND 
@@ -140,6 +140,7 @@ router.post('/webhook', async (req, res) => {
               console.log(data);
               if (error) throw error;
               if (!data.length){
+                  
                   let user_email = {
                     fulfillmentText: 'First 6 digist '+account_digits_list[0]+
                                      '\nLast 4 disgits '+account_digits_list[1] +
@@ -154,6 +155,12 @@ router.post('/webhook', async (req, res) => {
            
               }
             });
+          }else{
+            let user_email = {
+              fulfillmentText: 'account details are not properly formatted ###### #### ##/####',
+            }
+            res.json(user_email);
+          }
           break;
 
         case "input.totalloandisbursed":

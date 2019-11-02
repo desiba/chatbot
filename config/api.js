@@ -35,7 +35,7 @@ request.end();
 //getRes('who linked this card 418742 9594 12/2020').then(function(res){console.log(res)});
 //getRes('why user was banned 24497').then(function(res){console.log(res)});
 //getRes('why user was banned 4747489').then(function(res){console.log(res)});
-getRes('total loans disbursed  today').then(function(res){console.log(res)});
+getRes('total loans disbursed today').then(function(res){console.log(res)});
 getRes('loan disbursed for this week').then(function(res){console.log(res)});
 getRes('loan disbursed for this month').then(function(res){console.log(res)});
 getRes('who linked card 536613 9939 11/2020').then(function(res){console.log(res)});
