@@ -138,7 +138,7 @@ router.post('/webhook', async (req, res) => {
                                       exp_month = ${card_date_list[0]} AND 
                                       exp_year = ${card_date_list[1]}`,  (error, data) => {
               console.log(data);
-              
+              break;
               if (error) throw error;
               if (!data.length){
                   let user_email = {
