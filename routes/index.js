@@ -113,13 +113,9 @@ router.post('/webhook', async (req, res) => {
 
         break;
 
-        case "input.who_linked_card":
+        case "input.wholinkedcard":
 
-            //var str = "4746 474637";
-            //var strArr = str.split(" ");
-
-            //strArr = str.split("/");
-          
+            
             let account_digits = parameters.card-digits;
             let card_dates = parameters.card-date;
 
