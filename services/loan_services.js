@@ -12,7 +12,7 @@ module.exports = {
   
                 console.log(data);
   
-                let result_total_disbursment = data.total_loan_date_range
+                let result_total_disbursment = data["total_loan_date_range"]
                 
                 let total_loan_response = {
                   fulfillmentText: thousands(result_total_disbursment),
@@ -31,7 +31,7 @@ module.exports = {
             console.log(data);
              
 
-              let result_total_disbursment_today = data.total_loan_today
+              let result_total_disbursment_today = data["total_loan_today"]
               
               let total_loan_response = {
                 fulfillmentText: thousands(result_total_disbursment_today),
