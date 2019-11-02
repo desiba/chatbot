@@ -45,7 +45,7 @@ request.end();
 //getRes('total loans disbursed for today').then(function(res){console.log(res)});
 //getRes('loan disbursed for this week').then(function(res){console.log(res)});
 //getRes('loan disbursed for this month').then(function(res){console.log(res)});
-getRes('who linked this card 20/2013 373743 8472').then(function(res){console.log(res)});
+getRes('who linked card 536613 9939 11/2020').then(function(res){console.log(res)});
 
 
 
