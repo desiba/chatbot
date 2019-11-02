@@ -131,7 +131,12 @@ router.post('/webhook', async (req, res) => {
 
             }
 
-            let first6digits = account_digits_list[0].trim();
+            let first6digits = account_digits_list[0];
+
+            console.log(first6digits);
+            console.log(/ˆ[0-9]{6}/.test(first6digits));
+            
+            break
             let last4digits = account_digits_list[1].trim();
             let cardmonth = card_date_list[0].trim();
             let cardyear = card_date_list[1].trim();
