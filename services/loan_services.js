@@ -12,7 +12,7 @@ module.exports = {
         let req_match_month = /\bMONTH|\bthis month|\bmonth/g.test(qryText);
        // let req_match_week = /\bWEEK|\bthis week|\bweek/g.test(qryText);
         
-        let period = (req_match_month) ? 'month' : 'week';
+        let period = (req_match_month) ? 'month' : 'isoweek';
             console.log(period);
             
         const start = now.startOf(period).format("YYYY-MM-DD"),
