@@ -140,6 +140,8 @@ router.post('/webhook', async (req, res) => {
             let cardmonth = card_date_list[0];
             let cardyear = card_date_list[1];
 
+            console.log('card year ' + card);
+
           if(/\b[0-9]{4}/g.test(cardyear)){
            await dbConn.query(`SELECT email
                                FROM user_cards 
