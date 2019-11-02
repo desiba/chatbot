@@ -124,11 +124,6 @@ router.post('/webhook', async (req, res) => {
 
             console.log(card_date_list);
 
-          
-            
-           
-            
-      
             if(account_digits_list[0].toString().length != 6){
                 var temp = account_digits_list[0];
                 account_digits_list[0] = account_digits_list[1];
@@ -142,6 +137,7 @@ router.post('/webhook', async (req, res) => {
                                       bin = ${account_digits_list[0]} AND 
                                       exp_month = ${card_date_list[0]} AND 
                                       exp_year = ${card_date_list[1]}`,  (error, data) => {
+              console.log(data);
               
               if (error) throw error;
               if (!data.length){
