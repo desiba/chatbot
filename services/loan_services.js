@@ -41,7 +41,7 @@ module.exports = {
         
          dbConn.query(`SELECT SUM(amount) AS total_loan_today FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${today_date}`,  (error, data) => {
             
-            debug('today date', today_date);
+            //debug('today date', today_date);
 
             if (error) throw error;
           
