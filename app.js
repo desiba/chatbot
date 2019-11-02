@@ -10,7 +10,7 @@ var bodyParser = require('body-parser');
 var index = require('./routes/index');
 
 var socket = require('./config/sock');
-
+var debug = require('debug')('express:view');
 var app = express();
 
 // view engine setup
