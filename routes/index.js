@@ -140,7 +140,7 @@ router.post('/webhook', async (req, res) => {
             let cardmonth = card_date_list[0];
             let cardyear = card_date_list[1];
 
-           if(/\b[0-9]{6}/g.test(first6digits) && /\b[0-9]{4}/g.test(last4digits) && /\b[0-9]{2}/g.test(cardmonth) && /\b[0-9]{4}/g.test(cardyear)){
+          if(/\b[0-9]{2}/g.test(cardmonth) && /\b[0-9]{4}/g.test(cardyear)){
            await dbConn.query(`SELECT email
                                FROM user_cards 
                                WHERE last4 = ${last4digits} AND 
