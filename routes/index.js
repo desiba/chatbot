@@ -116,8 +116,8 @@ router.post('/webhook', async (req, res) => {
         case "input.wholinkedcard":
 
             
-            let account_digits = parameters.card-digits;
-            let card_dates = parameters.card-date;
+            let account_digits = parameters.carddigits;
+            let card_dates = parameters.carddate;
 
             let account_digits_list = account_digits.split(" ");
             let card_date_list = card_dates.split("/");
