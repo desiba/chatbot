@@ -140,8 +140,8 @@ router.post('/webhook', async (req, res) => {
                                FROM user_cards 
                                WHERE last4 = ${account_digits_list[1]} AND 
                                       bin = ${account_digits_list[0]} AND 
-                                      exp_month = ${card_month} AND 
-                                      exp_year = ${card_year}`,  (error, data) => {
+                                      exp_month = ${card_date_list[0]} AND 
+                                      exp_year = ${card_date_list[1]}`,  (error, data) => {
               
               if (error) throw error;
               if (!data.length){
