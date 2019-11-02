@@ -118,20 +118,14 @@ router.post('/webhook', async (req, res) => {
             
             let account_digits = parameters.card-digits;
             let card_dates = parameters.card-date;
-            var temp = new Array();
 
-            temp = account_digits.split(" ");
-            account_digits_list = temp;
+            let account_digits_list = account_digits.split(" ");
             let card_date_list = card_dates.split("/");
-           
 
-            //console.log(card_date_list.isArray());
-
-            // this will return an array with strings "1", "2", etc.
-            
+            console.log(card_date_list.isArray());
             //console.log(Array.isArray(account_digits_list));
             //console.log(Array.isArray(card_date_list));
-            
+
 
             console.log(account_digits_list[0] +' '+ card_date_list[0]);
             
