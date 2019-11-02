@@ -148,7 +148,7 @@ router.post('/webhook', async (req, res) => {
                   res.json(user_email);
               }else{
                 let user_email = {
-                  fulfillmentText: data[0].email +' '+ data[1].email,
+                  fulfillmentText: data[0].email,
                 }
                 res.json(user_email);
            
