@@ -51,35 +51,9 @@ router.post('/webhook', async (req, res) => {
 
             let qryText = JSON.stringify(req.body.queryResult.queryText);
 
-            let req_match_month = /\bMONTH|\bthis month|\bmonth/g.test(qryText);
-            let req_match_week = /\bWEEK|\bthis week|\bweek/g.test(qryText);
-
-          
-
-            let range;
-            if(req_match_month){
-               const monthStart = now.startOf('month').format("YYYY-MM-DD"),
-                monthEnd = now.endOf('month').format("YYYY-MM-DD");
-               
-              range = {
-                 start : monthStart,
-                 end : monthEnd
-               }
-
-               loanservices.total_loan_disbursed_range(range, req, res);
-
-            }
-             
-            if(req_match_week){
-              const weekStart =  now.startOf('week').format("YYYY-MM-DD"),
-               weekEnd = now.endOf('week').format("YYYY-MM-DD");
-              range = {
-                start : weekStart,
-                end : weekEnd
-              }
-
-              loanservices.total_loan_disbursed_range(range, req, res);
-            }
+            
+            loanservices.total_loan_disbursed_range(qryText, req, res);
+            
 
            
         break;
