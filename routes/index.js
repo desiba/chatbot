@@ -84,7 +84,7 @@ router.post('/webhook', async (req, res) => {
            
         break;
 
-        case "input.totalloansdisburseddate":
+        case "input.loans-disbursed-by-date":
             //let findate = parameters.findate;
             const today_date = JSON.stringify(now.format("YYYY-MM-DD"));
             loanservices.total_loans_date(today_date, req, res);
@@ -99,37 +99,7 @@ router.post('/webhook', async (req, res) => {
         break;
 
 
-        case "input.totalloandisbursement":
-          
-          const dateObj = {
-            day_period : parameters.day_period,
-            date : parameters.date,
-            date2 : parameters.date2,
-            week_period : parameters.week_period,
-            start_date : parameters.start_date,
-            end_date : parameters.end_date
-
-          }
-
-          console.log(dateObj);
-            
-            dbConn.query("SELECT COUNT(*) AS loan_type FROM loan_type",  (error, data) => {
-              if (error) throw error;
-                  let results = 'total loan: '+ data[0].loan_type;
-                 
-                  console.log(JSON.stringify(data));
-             
-                  let total_loan_disburement_response = {
-                    fulfillmentText: results,
-                  }
-                  res.json(total_loan_disburement_response);
-    
-                  
-                          
-              });
-
-       
-          break;
+        
 
         case "input.userbannedreason":
 
@@ -143,12 +113,23 @@ router.post('/webhook', async (req, res) => {
 
         break;
 
-        case "input.linkedcard":
-          
-            let account_digits_list = parameters.number;
-            let card_month = parameters.card_month;
-            let card_year = parameters.card_year; 
+        case "input.who_linked_card":
 
+            //var str = "4746 474637";
+            //var strArr = str.split(" ");
+
+            //strArr = str.split("/");
+          
+            let account_digits = parameters.card-digits;
+            let card_dates = parameters.card-date;
+
+            let account_digits_list = account_digits.split(" ");
+            let card_date_list = card_dates.split("/");
+
+            console.log(account_digits_list +' '+ card_date_list);
+            
+            break;
+            
             
 
             if(account_digits_list[0].toString().length != 6){
@@ -210,26 +191,6 @@ router.post('/webhook', async (req, res) => {
       
 });
 
-router.post('/total_loan_disbursed', (req, res) => {
-  dbConn.query('SELECT SUM(amount) AS total_loan_disbursed FROM disbursements',  (error, results, fields) => {
-      if (error) throw error;
-      if(res != null){
-        res.setHeader('Content-Type', 'application/json');
-        return res.send({ 
-          error: false, 
-          fulfilment: results, 
-          message: 'total loan disbursed' 
-        });
-      }else{
-        res.setHeader('Content-Type', 'application/json');
-        res.send(JSON.stringify({
-          "speech" : "Error. Can you try it again ? ",
-          "displayText" : "Error. Can you try it again ? "
-        }));
-      }
-
-  });
-});
 
 
 
