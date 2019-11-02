@@ -18,6 +18,8 @@ module.exports = {
         const start = now.startOf(period).format("YYYY-MM-DD"),
          end = now.endOf(period).format("YYYY-MM-DD");
 
+         console.log(now.subtract('7', 'days').format("YYYY-MM-DD"));
+
          console.log(start +' '+end);
                
 
