@@ -15,7 +15,7 @@ module.exports = {
         let period = (req_match_month) ? 'month' : 'isoweek';
             console.log(period);
             
-        const start = now.startOf(period).format("YYYY-MM-DD"),
+        let start = now.startOf(period).format("YYYY-MM-DD"),
          end = now.endOf(period).format("YYYY-MM-DD");
 
 
