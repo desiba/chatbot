@@ -69,10 +69,11 @@ module.exports = {
      total_loans_date :  function(req, res){
         
         const today_date = now.format("YYYY-MM-DD");
+        console.log(today_date);
         
          dbConn.query(`SELECT SUM(amount) AS total_loan_today FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${today_date}`,  (error, data) => {
             console.log(data);
-            
+
             if (error) throw error;
           
               let result_total_disbursment_today = data[0].total_loan_today
