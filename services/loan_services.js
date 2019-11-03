@@ -39,10 +39,11 @@ module.exports = {
                         
             });
         }else{
+           let end = moment().format('YYYY-MM-DD'),
+            start = moment().subtract(7,'d').format('YYYY-MM-DD');
 
-
-            let start = now.startOf(period).format("YYYY-MM-DD"),
-            end = now.endOf(period).format("YYYY-MM-DD");
+            //let start = now.startOf(period).format("YYYY-MM-DD"),
+            //end = now.endOf(period).format("YYYY-MM-DD");
    
    
             console.log(start +' '+end);
