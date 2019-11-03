@@ -47,21 +47,22 @@ router.post('/webhook', async (req, res) => {
 
       switch(action) {
 
-        case "input.totalloansbyrange":
+        case "input.total-loans-week":
 
-            let qryText = JSON.stringify(req.body.queryResult.queryText);
+            loanservices.total_loans_week(req, res);
 
-            
-            loanservices.total_loan_disbursed_range(qryText, req, res);
-            
-
-           
         break;
 
-        case "input.loans-disbursed-by-date":
+        case "input.total-loans-month":
+
+            loanservices.total_loan_month(req, res);
+            
+        break;
+
+        case "input.total-loans-today":
             
             
-            loanservices.total_loans_date(req, res);
+            loanservices.total_loans_today(req, res);
 
         break;
 

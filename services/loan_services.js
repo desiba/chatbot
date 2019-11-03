@@ -7,42 +7,10 @@ let now = moment();
 
 module.exports = {
 
-    total_loan_disbursed_range :  async function(qryText, req, res){
-        
-        let req_match_month = /\bMONTH|\bthis month|\bmonth/g.test(qryText);
-       // let req_match_week = /\bWEEK|\bthis week|\bweek/g.test(qryText);
-        
-        let period = (req_match_month) ? 'month' : 'week';
-            console.log(period);
-
-        if(period === 'month'){
-            
-        let start = now.startOf(period).format("YYYY-MM-DD"),
-         end = now.endOf(period).format("YYYY-MM-DD");
-
-
-         console.log(start +' '+end);
-
-               
-
-         await dbConn.query(`SELECT SUM(amount) AS total_loan_date_range FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts BETWEEN '${start}' AND '${end}' `,  (error, data) => {
-            if (error) throw error;
-  
-                let result_total_disbursment = data[0].total_loan_date_range
-                
-                let total_loan_response = {
-                  fulfillmentText: thousands(result_total_disbursment),
-                }
-                res.json(total_loan_response);
-                        
-            });
-        }else{
-           let end = moment().format('YYYY-MM-DD'),
+    total_loans_week : async function(req, res){
+        let end = moment().format('YYYY-MM-DD'),
             start = moment().subtract(7,'d').format('YYYY-MM-DD');
 
-            //let start = now.startOf(period).format("YYYY-MM-DD"),
-            //end = now.endOf(period).format("YYYY-MM-DD");
-   
    
             console.log(start +' '+end);
    
@@ -61,12 +29,36 @@ module.exports = {
                    res.json(total_loan_response);
                            
                });
+    },
 
-        }
+    total_loan_month :  async function(req, res){
+        
+       
+            
+        let start = now.startOf('month').format("YYYY-MM-DD"),
+         end = now.endOf('month').format("YYYY-MM-DD");
+
+
+         console.log(start +' '+end);
+
+               
+
+         await dbConn.query(`SELECT SUM(amount) AS total_loan_date_range FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts BETWEEN '${start}' AND '${end}' `,  (error, data) => {
+            if (error) throw error;
+  
+                let result_total_disbursment = data[0].total_loan_date_range
+                
+                let total_loan_response = {
+                  fulfillmentText: thousands(result_total_disbursment),
+                }
+                res.json(total_loan_response);
+                        
+            });
+        
 
     },
 
-     total_loans_date :  function(req, res){
+     total_loans_today :  function(req, res){
         
         const today_date = now.format("YYYY-MM-DD");
         console.log(today_date);
