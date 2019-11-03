@@ -28,8 +28,6 @@ module.exports = {
          await dbConn.query(`SELECT SUM(amount) AS total_loan_date_range FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts BETWEEN '${start}' AND '${end}' `,  (error, data) => {
             if (error) throw error;
   
-                console.log(data);
-  
                 let result_total_disbursment = data[0].total_loan_date_range
                 
                 let total_loan_response = {
@@ -70,17 +68,12 @@ module.exports = {
 
      total_loans_date :  function(req, res){
         
-        const today_date = JSON.stringify(now.format("YYYY-MM-DD"));
+        const today_date = now.format("YYYY-MM-DD");
         
          dbConn.query(`SELECT SUM(amount) AS total_loan_today FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = ${today_date}`,  (error, data) => {
             
-            //debug('today date', today_date);
-
             if (error) throw error;
           
-           
-             
-
               let result_total_disbursment_today = data[0].total_loan_today
               
               let total_loan_response = {
