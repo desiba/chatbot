@@ -14,6 +14,8 @@ module.exports = {
         
         let period = (req_match_month) ? 'month' : 'isoweek';
             console.log(period);
+
+        if(period == 'month'){
             
         let start = now.startOf(period).format("YYYY-MM-DD"),
          end = now.endOf(period).format("YYYY-MM-DD");
@@ -36,7 +38,32 @@ module.exports = {
                 res.json(total_loan_response);
                         
             });
+        }else{
 
+
+            let start = now.startOf(period).format("YYYY-MM-DD"),
+            end = now.endOf(period).format("YYYY-MM-DD");
+   
+   
+            console.log(start +' '+end);
+   
+                  
+   
+            await dbConn.query(`SELECT SUM(amount) AS total_loan_date_range FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts BETWEEN '${start}' AND '${end}' `,  (error, data) => {
+               if (error) throw error;
+     
+                   console.log(data);
+     
+                   let result_total_disbursment = data[0].total_loan_date_range
+                   
+                   let total_loan_response = {
+                     fulfillmentText: thousands(result_total_disbursment),
+                   }
+                   res.json(total_loan_response);
+                           
+               });
+
+        }
 
     },
 
