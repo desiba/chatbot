@@ -160,7 +160,7 @@ router.post('/webhook', async (req, res) => {
                 
 
                 let user_email = {
-                  fulfillmentText: data[0].email,
+                  fulfillmentText: emails,
                 }
                 res.json(user_email);
            
