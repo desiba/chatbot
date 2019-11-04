@@ -4,6 +4,27 @@ const thousands = require('thousands');
 
 module.exports = {
 
+  total_loans_today :  function(req, res){
+        
+    const today_date = moment().format("YYYY-MM-DD");
+    console.log(today_date);
+
+     dbConn.query(`SELECT count(id) AS total_loan_today FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = '${today_date}'`,  (error, data) => {
+        console.log(data);
+
+        if (error) throw error;
+      
+          let result_total_disbursment_today = data[0].total_loan_today
+          
+          let total_loan_response = {
+            fulfillmentText: thousands(result_total_disbursment_today),
+          }
+          res.json(total_loan_response);
+                  
+      });
+
+    },
+
     total_users : function(req, res){
 
         dbConn.query("SELECT COUNT(*) AS totalusers FROM users",  (error, data) => {

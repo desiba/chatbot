@@ -9,7 +9,7 @@ module.exports = {
 
     total_loans_week : async function(req, res){
         let end = moment().format('YYYY-MM-DD'),
-            start = moment().subtract(7,'d').format('YYYY-MM-DD');
+            start = moment().startOf('isoweek').format('YYYY-MM-DD');
 
    
             console.log(start +' '+end);

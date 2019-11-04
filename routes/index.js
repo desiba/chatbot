@@ -47,6 +47,11 @@ router.post('/webhook', async (req, res) => {
 
       switch(action) {
 
+        case "input.total-users-today":
+            userservices.total_users_today(req, res);
+
+        break;
+
         case "input.total-loans-week":
 
             loanservices.total_loans_week(req, res);
@@ -60,7 +65,6 @@ router.post('/webhook', async (req, res) => {
         break;
 
         case "input.total-loans-today":
-            
             
             loanservices.total_loans_today(req, res);
 
@@ -167,7 +171,7 @@ router.post('/webhook', async (req, res) => {
                             
                 });
 
-              break;
+        break;
             
         default:
             
