@@ -132,12 +132,12 @@ router.post('/webhook', async (req, res) => {
             let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
 
           
-           await dbConn.query(`SELECT email
+           await dbConn.query(`SELECT email DISTINCT
                                FROM user_cards 
                                WHERE last4 = ${last4digits} AND 
                                       bin = ${first6digits} AND 
                                       exp_month = ${cardmonth} AND 
-                                      exp_year = ${card_year_formatted}`,  (error, data) => {
+                                      exp_year = ${card_year_formatted} `,  (error, data) => {
               console.log(data);
               if (error) throw error;
               if (!data.length){
