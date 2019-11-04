@@ -117,7 +117,7 @@ router.post('/webhook', async (req, res) => {
 
             console.log(card_date_list);
             console.log(account_digits_list);
-            break
+            
 
             if(account_digits_list[0].toString().length != 6){
                 var temp = account_digits_list[0];
