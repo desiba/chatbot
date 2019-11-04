@@ -110,8 +110,6 @@ router.post('/webhook', async (req, res) => {
             let account_digit_string = `${account_details_array[0]} ${account_details_array[1]}`;
             let card_digit_string = account_details_array[2];
 
-
-            
             let account_digits_list = account_digit_string.split(" ");
             let card_date_list = card_digit_string.split("/");
 
@@ -151,6 +149,7 @@ router.post('/webhook', async (req, res) => {
                   }
                   res.json(user_email);
               }else{
+                
                 let user_email = {
                   fulfillmentText: data[0].email,
                 }
