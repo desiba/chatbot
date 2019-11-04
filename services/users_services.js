@@ -57,6 +57,7 @@ module.exports = {
                   fulfillmentText: 'I can\'t retrieve details with id supplied ' + id,
                 }
                 res.json(user_ban_details);
+                
             }else{
           
               let ban_start = data[0].ban_starts;

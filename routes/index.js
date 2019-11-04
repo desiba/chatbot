@@ -149,6 +149,15 @@ router.post('/webhook', async (req, res) => {
                   }
                   res.json(user_email);
               }else{
+
+                let emails = '';
+                    
+                    data.forEach((item)=> {
+                       emails = emails.concat(' '+item.email);
+                    });
+
+                console.log(emails);
+                break
                 
                 let user_email = {
                   fulfillmentText: data[0].email,
