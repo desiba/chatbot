@@ -99,7 +99,16 @@ router.post('/webhook', async (req, res) => {
             let card_dates = parameters.carddate;
             let everything = `${account_digits} ${card_dates}`;
 
-            console.log(everything);
+            var newStr = everything.replace(/\./g,' ').trim();
+            var arrNew = newStr.split(' ');
+            var res1 = arrNew.filter((x) => {
+              if(x!=="")
+                  return true;
+              
+          });
+          console.log(res1);
+          break
+            //console.log(everything);
             
             
             let account_digits_list = account_digits.split(" ");
