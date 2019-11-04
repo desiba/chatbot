@@ -101,20 +101,22 @@ router.post('/webhook', async (req, res) => {
 
             var newStr = everything.replace(/\./g,' ').trim();
             var arrNew = newStr.split(' ');
-            var res1 = arrNew.filter((x) => {
+            var account_details_array = arrNew.filter((x) => {
               if(x!=="")
                   return true;
               
-          });
-          console.log(res1);
-          break
-            //console.log(everything);
+            });
+          
+            let account_digit_string = `${account_details_array[0]} ${account_details_array[1]}`;
+            let card_digit_string = account_details_array[2];
+
+
             
-            
-            let account_digits_list = account_digits.split(" ");
-            let card_date_list = card_dates.split("/");
+            let account_digits_list = account_digit_string.split(" ");
+            let card_date_list = card_digit_string.split("/");
 
             console.log(card_date_list);
+            console.log(account_digits_list);
             break
 
             if(account_digits_list[0].toString().length != 6){
