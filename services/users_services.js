@@ -64,7 +64,7 @@ module.exports = {
               let active = data[0].active;
               let note = data[0].note;
 
-              active = (active == 1) ? 'banned' : 'banned lifted';
+              active = (active == 1) ? 'banned' : 'ban lifted';
 
 
               
