@@ -53,18 +53,12 @@ module.exports = {
             if (error) throw error;
             if (!data.length){
 
-                //await  dbConn.query(`select ban_starts, ban_ends, active, note from user_bans where user_id = ${userid} ORDER BY ban_ends DESC LIMIT 1`,  (error, data) => {
-            
-
-
                 let user_ban_details = {
-                  fulfillmentText: 'i cant retrieve details with id supplied' + id,
+                  fulfillmentText: 'I can\'t retrieve details with id supplied ' + id,
                 }
                 res.json(user_ban_details);
             }else{
-            
-            
-
+          
               let ban_start = data[0].ban_starts;
               let ban_ends = data[0].ban_ends;
               let active = data[0].active;
