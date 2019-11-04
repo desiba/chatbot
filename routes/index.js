@@ -115,8 +115,8 @@ router.post('/webhook', async (req, res) => {
 
             console.log(card_date_list);
             console.log(account_digits_list);
+
             
-            break
 
             if(account_digits_list[0].toString().length != 6){
                 var temp = account_digits_list[0];
@@ -132,7 +132,8 @@ router.post('/webhook', async (req, res) => {
             console.log('card year ' + cardyear);
             let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
 
-          
+           console.log(last4digits +' '+ first6digits +' '+ cardmonth +' '+ card_year_formatted);
+           break
            await dbConn.query(`SELECT email DISTINCT
                                FROM user_cards 
                                WHERE last4 = ${last4digits} AND 
