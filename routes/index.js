@@ -134,7 +134,7 @@ router.post('/webhook', async (req, res) => {
 
            console.log(last4digits +' '+ first6digits +' '+ cardmonth +' '+ card_year_formatted);
            
-           await dbConn.query(`SELECT email DISTINCT
+           await dbConn.query(`SELECT DISTINCT email
                                FROM user_cards 
                                WHERE last4 = '${last4digits}' AND 
                                       bin = '${first6digits}' AND 
