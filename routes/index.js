@@ -97,14 +97,16 @@ router.post('/webhook', async (req, res) => {
             
             let account_digits = parameters.carddigits;
             let card_dates = parameters.carddate;
+            let everything = `${account_digits} ${card_dates}`;
 
-            console.log(card_dates +' '+ account_digits);
+            console.log(everything);
             
-            break
+            
             let account_digits_list = account_digits.split(" ");
             let card_date_list = card_dates.split("/");
 
             console.log(card_date_list);
+            break
 
             if(account_digits_list[0].toString().length != 6){
                 var temp = account_digits_list[0];
