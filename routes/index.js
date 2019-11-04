@@ -131,14 +131,15 @@ router.post('/webhook', async (req, res) => {
             let cardyear = card_date_list[1];
 
             console.log('card year ' + cardyear);
+            let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
 
-          if(/\b[0-9]{4}/g.test(cardyear)){
+          
            await dbConn.query(`SELECT email
                                FROM user_cards 
                                WHERE last4 = ${last4digits} AND 
                                       bin = ${first6digits} AND 
                                       exp_month = ${cardmonth} AND 
-                                      exp_year = ${cardyear}`,  (error, data) => {
+                                      exp_year = ${card_year_formatted}`,  (error, data) => {
               console.log(data);
               if (error) throw error;
               if (!data.length){
@@ -157,12 +158,7 @@ router.post('/webhook', async (req, res) => {
            
               }
             });
-          }else{
-            let user_email = {
-              fulfillmentText: 'account details are not properly formatted ###### #### ##/####',
-            }
-            res.json(user_email);
-          }
+         
           break;
 
         case "input.totalloandisbursed":
