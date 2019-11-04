@@ -157,8 +157,8 @@ router.post('/webhook', async (req, res) => {
                     });
 
                 console.log(emails);
-                break
                 
+
                 let user_email = {
                   fulfillmentText: data[0].email,
                 }
