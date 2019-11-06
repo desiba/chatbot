@@ -131,19 +131,20 @@ router.post('/webhook', async (req, res) => {
 
             //console.log('card year ' + cardyear);
             let sql ;
-            if(cardmonth != undefined && cardyear != undefined){
+
+            if(cardmonth != undefined || cardmonth != null && cardyear != undefined || cardyear != null){
               let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
               sql = `SELECT DISTINCT email
-              FROM user_cards 
-              WHERE last4 = '${last4digits}' AND 
-                     bin = '${first6digits}' AND 
-                     exp_month = '${cardmonth}' AND 
-                     exp_year = '${card_year_formatted}' `
+                     FROM user_cards 
+                     WHERE last4 = '${last4digits}' AND 
+                          bin = '${first6digits}' AND 
+                          exp_month = '${cardmonth}' AND 
+                          exp_year = '${card_year_formatted}'`;
             }else{
               sql = `SELECT DISTINCT email
-                    FROM user_cards 
-                    WHERE last4 = '${last4digits}' AND 
-                     bin = '${first6digits}'`
+                     FROM user_cards 
+                     WHERE last4 = '${last4digits}' AND 
+                     bin = '${first6digits}'`;
             }
 
            //console.log(last4digits +' '+ first6digits +' '+ cardmonth +' '+ card_year_formatted);
