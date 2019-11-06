@@ -128,7 +128,7 @@ router.post('/webhook', async (req, res) => {
             //console.log('card year ' + cardyear);
             let sql ;
 
-            if(cardmonth != undefined || cardmonth != null && cardyear != undefined || cardyear != null){
+            if(card_digit_string != undefined && card_digit_string != null){
               
               let card_date_list = card_digit_string.split("/");
               let cardmonth = card_date_list[0];
