@@ -112,8 +112,7 @@ router.post('/webhook', async (req, res) => {
 
             let account_digits_list = account_digit_string.split(" ");
           
-            console.log(card_date_list);
-            console.log(account_digits_list);
+            
 
             
 
