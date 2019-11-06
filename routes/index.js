@@ -111,8 +111,7 @@ router.post('/webhook', async (req, res) => {
             let card_digit_string = account_details_array[2];
 
             let account_digits_list = account_digit_string.split(" ");
-            let card_date_list = card_digit_string.split("/");
-
+          
             console.log(card_date_list);
             console.log(account_digits_list);
 
@@ -126,13 +125,16 @@ router.post('/webhook', async (req, res) => {
 
             let first6digits = account_digits_list[0];
             let last4digits = account_digits_list[1];
-            let cardmonth = card_date_list[0];
-            let cardyear = card_date_list[1];
-
+            
             //console.log('card year ' + cardyear);
             let sql ;
 
             if(cardmonth != undefined || cardmonth != null && cardyear != undefined || cardyear != null){
+              
+              let card_date_list = card_digit_string.split("/");
+              let cardmonth = card_date_list[0];
+              let cardyear = card_date_list[1];
+
               let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
               sql = `SELECT DISTINCT email
                      FROM user_cards 
