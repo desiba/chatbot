@@ -32,13 +32,13 @@ request.end();
 };
 
 
-//getRes('who linked this card 539941 9993 03/20').then(function(res){console.log(res)});
+getRes('who linked this card 539941 9993 03/20').then(function(res){console.log(res)});
 getRes('why user was banned 24497').then(function(res){console.log(res)});
-//getRes('why user was banned igohgabriel33@gmail.com').then(function(res){console.log(res)});
-//getRes('total loans disbursed today').then(function(res){console.log(res)});
+getRes('why user was banned igohgabriel33@gmail.com').then(function(res){console.log(res)});
+getRes('total loans disbursed today').then(function(res){console.log(res)});
 getRes('loan disbursed for this week').then(function(res){console.log(res)});
-//getRes('loan disbursed for this month').then(function(res){console.log(res)});
-//getRes('who linked this card 536613 9939 11/2020').then(function(res){console.log(res)});
+getRes('loan disbursed for this month').then(function(res){console.log(res)});
+getRes('who linked this card 536613 9939 11/2020').then(function(res){console.log(res)});
 getRes('537010 0547  05/2022').then(function(res){console.log(res)});
 
 

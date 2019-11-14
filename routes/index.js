@@ -5,6 +5,9 @@ var loanservices = require('../services/loan_services');
 var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
 const moment = require('moment');
+const db = require('../models/index');
+const sequelize = require('sequelize');
+
 
 let now = moment();
 
@@ -19,6 +22,10 @@ let now = moment();
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'botUI_api.ai' });
 });
+
+router.get('/getlocation', function(req, res, next){
+  loanservices.total_users_joined_today(req, res);
+})
 
 router.post('/hello', (req, res) => {
    console.log(res.body);
@@ -94,18 +101,13 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
-            
-            let account_digits = parameters.carddigits;
-            let card_dates = parameters.carddate;
-            let everything = `${account_digits} ${card_dates}`;
-
-            var newStr = everything.replace(/\./g,' ').trim();
-            var arrNew = newStr.split(' ');
-            var account_details_array = arrNew.filter((x) => {
-              if(x!=="")
-                  return true;
-              
-            });
+           
+            let  everything = `${parameters.carddigits} ${parameters.carddate}`.replace(/\./g,' ').trim().split(' '),
+                
+                account_details_array = everything.filter((x) => {
+                if(x!=="")
+                    return true;
+                });
           
             let account_digit_string = `${account_details_array[0]} ${account_details_array[1]}`;
             let card_digit_string = account_details_array[2];
@@ -113,9 +115,7 @@ router.post('/webhook', async (req, res) => {
             let account_digits_list = account_digit_string.split(" ");
           
             
-
-            
-
+            //swap values to [first6digits, last4digits] if [last4digits, first6digits] == true
             if(account_digits_list[0].toString().length != 6){
                 var temp = account_digits_list[0];
                 account_digits_list[0] = account_digits_list[1];
@@ -135,66 +135,73 @@ router.post('/webhook', async (req, res) => {
               let cardyear = card_date_list[1];
 
               let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
+              
               sql = `SELECT DISTINCT email
                      FROM user_cards 
                      WHERE last4 = '${last4digits}' AND 
                           bin = '${first6digits}' AND 
                           exp_month = '${cardmonth}' AND 
                           exp_year = '${card_year_formatted}'`;
-            }else{
+              }else{
               sql = `SELECT DISTINCT email
                      FROM user_cards 
                      WHERE last4 = '${last4digits}' AND 
                      bin = '${first6digits}'`;
-            }
+              }
 
            //console.log(last4digits +' '+ first6digits +' '+ cardmonth +' '+ card_year_formatted);
           
-           await dbConn.query(sql ,  (error, data) => {
-              console.log(data);
-              if (error) throw error;
+          await db.sequelize.query(sql,  { type: sequelize.QueryTypes.SELECT})
+            .then(function(data){
+
               if (!data.length){
                   
-                  let user_email = {
-                    fulfillmentText: 'First 6 digist '+account_digits_list[0]+
-                                     '\nLast 4 disgits '+account_digits_list[1] +
-                                     '\ncard not found',
-                  }
-                  res.json(user_email);
-              }else{
-
-                let emails = '';
-                    
-                    data.forEach((item)=> {
-                       emails = emails.concat(' '+item.email);
-                    });
-
-                console.log(emails);
-                
-
                 let user_email = {
-                  fulfillmentText: emails,
+                  fulfillmentText: 'First 6 digist '+account_digits_list[0]+
+                                   '\nLast 4 disgits '+account_digits_list[1] +
+                                   '\ncard not found',
                 }
                 res.json(user_email);
-           
+            }else{
+
+              let emails = '';
+                  
+                  data.forEach((item)=> {
+                     emails = emails.concat(' '+item.email);
+                  });
+
+              let user_email = {
+                fulfillmentText: emails,
               }
-            });
+              res.json(user_email);
+         
+            }
+          
+           })
+          .catch(err => {
+            throw err;
+            console.log(err);
+
+           });
+
+
          
           break;
 
         case "input.totalloandisbursed":
 
-              dbConn.query('SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9)',  (error, data) => {
-                if (error) throw error;
-
-                    let result_total_disbursment = data[0].total_loan_disbursed
-                    
-                    let total_loan_response = {
-                      fulfillmentText: thousands(result_total_disbursment),
-                    }
-                    res.json(total_loan_response);
-                            
-                });
+           await db.sequelize.query(``,  { type: sequelize.QueryTypes.SELECT})
+            .then(function(data){
+              let result_total_disbursment = data[0].total_loan_disbursed
+              let total_loan_response = {
+                fulfillmentText: thousands(result_total_disbursment),
+              }
+              res.json(total_loan_response);
+            })
+            .catch(err => {
+                throw err;
+                console.log(err);
+            });
 
         break;
             
