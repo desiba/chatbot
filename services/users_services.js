@@ -1,4 +1,3 @@
-var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
 const db = require('../models/index');
 const sequelize = require('sequelize');

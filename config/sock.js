@@ -23,8 +23,6 @@ io.on('connection', function (socket) {
          api.getRes(data.client).then(function(res){
 
             console.log('server', res);
-
-            
             console.log('client', data.client)
 
             socket.emit('fromServer', { server: res });

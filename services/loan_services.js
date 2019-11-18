@@ -1,4 +1,3 @@
-var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
 const moment = require('moment');
 const db = require('../models/index');
@@ -8,6 +7,30 @@ let now = moment();
 
 
 module.exports = {
+
+
+    total_loans_by_date :  async function(data, req, res){
+
+       
+        const loan_date = moment(data.loan_date).format("YYYY-MM-DD");
+
+        await db.sequelize.query(`SELECT SUM(amount) AS total_loan_by_date FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = '${loan_date}'`,  { type: sequelize.QueryTypes.SELECT})
+        .then(function(data){
+            let result_total_disbursment_today = data[0].total_loan_by_date
+              
+            let total_loan_response = {
+              fulfillmentText: thousands(result_total_disbursment_today),
+            }
+            res.json(total_loan_response);
+        })
+        .catch(err => {
+            throw err;
+            console.log(err);
+
+        });
+
+
+    },
 
     
 

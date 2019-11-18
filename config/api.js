@@ -4,10 +4,7 @@ var apiai = require('apiai');
 
 //Enter your API Key
 var app = apiai(process.env.CLIENT_ACCESS_TOKEN);
-//var app = apiai("843e044bf18b430cbce8dbf2c8181cb4");
 
-
-// Function which returns speech from api.ai
 var getRes = function(query) {
   var request = app.textRequest(query, {
       sessionId: process.env.DEVELOPER_ACCESS_TOKEN

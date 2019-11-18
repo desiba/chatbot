@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var userservices = require('../services/users_services');
 var loanservices = require('../services/loan_services');
-var dbConn = require('../config/dbConn');
 const thousands = require('thousands');
 const moment = require('moment');
 const db = require('../models/index');
@@ -53,6 +52,13 @@ router.post('/webhook', async (req, res) => {
 
 
       switch(action) {
+
+        case "input.total_loan_date":
+          let loandate = parameters.loandate;
+
+          console.log(loandate);
+          break
+          loanservices.total_loans_by_date(loandate, req, res);
 
         case "input.total-users-today":
             userservices.total_users_today(req, res);
