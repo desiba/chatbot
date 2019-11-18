@@ -59,6 +59,8 @@ router.post('/webhook', async (req, res) => {
           
           loanservices.total_loans_by_date(loandate, req, res);
 
+        break;
+
         case "input.total-users-today":
             userservices.total_users_today(req, res);
 
