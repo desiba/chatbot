@@ -1,7 +1,5 @@
 
- module.exports = {
-
-    format_date = (date) => {
+    function format_date(date){
         var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
@@ -13,5 +11,4 @@
             day = '0' + day;
         return [year, month, day].join('-');
     }
-};
-  
+export {format_date};  
