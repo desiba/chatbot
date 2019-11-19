@@ -62,6 +62,7 @@ router.post('/webhook', async (req, res) => {
            
           }else if(loandate == 'yesterday'){
             loandate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+            console.log(loandate);
           }else{
             loandate = parameters.loandate;
           }
