@@ -2,6 +2,7 @@ const thousands = require('thousands');
 const moment = require('moment');
 const db = require('../models/index');
 const sequelize = require('sequelize');
+const date_format = require('../utils/date_format');
 
 let now = moment();
 
@@ -12,7 +13,9 @@ module.exports = {
     total_loans_by_date :  async function(loandate, req, res){
 
        
-        const loan_date = moment(loandate).format("YYYY-MM-DD");
+        const loan_date = date_format(loandate);
+
+        console.log(loan_date);
         
         await db.sequelize.query(`SELECT SUM(amount) AS total_loan_by_date FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = '${loan_date}'`,  { type: sequelize.QueryTypes.SELECT})
         .then(function(data){
