@@ -16,6 +16,7 @@ module.exports = {
         
         await db.sequelize.query(`SELECT SUM(amount) AS total_loan_by_date FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = '${loan_date}'`,  { type: sequelize.QueryTypes.SELECT})
         .then(function(data){
+            
             let result_total_disbursment_today = data[0].total_loan_by_date
               
             let total_loan_response = {

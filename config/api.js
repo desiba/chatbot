@@ -29,7 +29,7 @@ request.end();
 };
 
 
-getRes('total loans for November 18, 2019').then(function(res){console.log(res)});
+getRes('loans on 2018-02-10').then(function(res){console.log(res)});
 
 
 
