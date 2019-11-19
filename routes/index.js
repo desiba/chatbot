@@ -53,8 +53,19 @@ router.post('/webhook', async (req, res) => {
 
       switch(action) {
 
-        case "input.total_loan_date":
-          let loandate = parameters.loandate;
+        case "input.total-loans-date-based":
+
+          let loandate;
+
+          if(loandate == 'today'){
+            loandate = moment().format('YYYY-MM-DD');
+           
+          }else if(loandate == 'yesterday'){
+            loandate = moment().subtract(1, 'days').format('YYYY-MM-DD');
+          }else{
+            loandate = parameters.loandate;
+          }
+
           loanservices.total_loans_by_date(loandate, req, res);
 
         break;

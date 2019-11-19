@@ -22,11 +22,11 @@ module.exports = {
     });
   },
 
-  total_loans_today :  function(req, res){
+  total_users_today :  function(req, res){
         
-    let today_date = moment().format("YYYY-MM-DD");
+    //let today_date = moment().format("YYYY-MM-DD");
 
-      db.sequelize.query(`SELECT count(id) AS total_loan_today FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = '${today_date}'`,  { type: sequelize.QueryTypes.SELECT})
+      db.sequelize.query(`SELECT count(id) AS total_users_today FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = '${loandate}'`,  { type: sequelize.QueryTypes.SELECT})
       .then(function(data){
 
           let result_total_disbursment_today = data[0].total_loan_today
@@ -70,11 +70,11 @@ module.exports = {
 
     if(id != undefined || id != null){
 
-      db.sequelize.query(`SELECT b.ban_starts, b.ban_ends, active, note 
+      db.sequelize.query(`SELECT b.ban_starts, b.ban_ends, active, note , b.created_at
                           FROM users u left 
                           JOIN user_bans b ON u.id = b.user_id 
                           WHERE (email = '${id}' or u.id = '${id}') 
-                          ORDER BY note DESC LIMIT 1`,  
+                          ORDER BY created_at DESC LIMIT 1`,  
                           { type: sequelize.QueryTypes.SELECT})
         .then(function(data){
 
