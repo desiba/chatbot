@@ -33,5 +33,9 @@ getRes('loans on 2018-02-10').then(function(res){console.log(res)});
 
 getRes('total loans that was disbursed on October 20, 2017').then(function(res){console.log(res)});
 
+getRes('total loans disbursed on 20-04-2020').then(function(res){console.log(res)});
+
+getRes('total amount of loans disbursed yesterday').then(function(res){console.log(res)});
+
 
 module.exports = {getRes}
