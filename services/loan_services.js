@@ -15,18 +15,13 @@ module.exports = {
        
         const loan_date = date_format.format_date(loandate);
 
-        console.log(loan_date);
-
-        
         await db.sequelize.query(`SELECT SUM(amount) AS total_loan_by_date FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = '${loan_date}'`,  { type: sequelize.QueryTypes.SELECT})
         .then(function(data){
 
-            let result_total_disbursment_today = data[0].total_loan_by_date
-            
-            console.log(result_total_disbursment_today)
+            let result_total_disbursment_by_date = data[0].total_loan_by_date
             
             let total_loan_response = {
-              fulfillmentText: thousands(result_total_disbursment_today),
+              fulfillmentText: thousands(result_total_disbursment_by_date),
             }
             res.json(total_loan_response);
         })
@@ -39,14 +34,27 @@ module.exports = {
 
     },
 
+    total_loans_disbursed : async function(req, res){
+
+        await db.sequelize.query(`SELECT SUM(amount) AS total_loan_disbursed FROM loan_requests WHERE approval_status IN (1,3,7,9)`,  { type: sequelize.QueryTypes.SELECT})
+        .then(function(data){
+          let result_total_disbursed = data[0].total_loan_disbursed
+          let total_loan_response = {
+            fulfillmentText: thousands(result_total_disbursed),
+          }
+          res.json(total_loan_response);
+        })
+        .catch(err => {
+            throw err;
+            console.log(err);
+        });
+    },
+
     
 
     total_loans_week : async function(req, res){
         let end = moment().format('YYYY-MM-DD'),
             start = moment().startOf('isoweek').format('YYYY-MM-DD');
-
-   
-            console.log(start +' '+end);
 
             await db.sequelize.query(`SELECT SUM(amount) AS total_loan_date_range FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts BETWEEN '${start}' AND '${end}' `,  { type: sequelize.QueryTypes.SELECT})
             .then(function(data){

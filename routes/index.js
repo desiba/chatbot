@@ -62,10 +62,9 @@ router.post('/webhook', async (req, res) => {
            
           }else if(loandate == 'yesterday'){
             loandate = moment().subtract(1, 'days').format('YYYY-MM-DD');
-            console.log(loandate);
           }
           
-          loanservices.total_loans_by_date(loandate, req, res);
+            loanservices.total_loans_by_date(loandate, req, res);
 
         break;
 
@@ -99,8 +98,6 @@ router.post('/webhook', async (req, res) => {
           
         break;
 
-
-        
 
         case "input.userbannedreason":
 
@@ -205,18 +202,7 @@ router.post('/webhook', async (req, res) => {
 
         case "input.totalloandisbursed":
 
-           await db.sequelize.query(``,  { type: sequelize.QueryTypes.SELECT})
-            .then(function(data){
-              let result_total_disbursment = data[0].total_loan_disbursed
-              let total_loan_response = {
-                fulfillmentText: thousands(result_total_disbursment),
-              }
-              res.json(total_loan_response);
-            })
-            .catch(err => {
-                throw err;
-                console.log(err);
-            });
+          loanservice.total_loans_disbursed(req, res);
 
         break;
             
