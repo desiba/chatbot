@@ -202,7 +202,7 @@ router.post('/webhook', async (req, res) => {
 
         case "input.totalloandisbursed":
 
-          loanservice.total_loans_disbursed(req, res);
+          loanservices.total_loans_disbursed(req, res);
 
         break;
             
