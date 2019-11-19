@@ -13,7 +13,7 @@ module.exports = {
     total_loans_by_date :  async function(loandate, req, res){
 
        
-        const loan_date = date_format(loandate);
+        const loan_date = date_format.format_date(loandate);
 
         console.log(loan_date);
         
