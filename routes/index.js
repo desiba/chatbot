@@ -153,7 +153,9 @@ router.post('/webhook', async (req, res) => {
 
               let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
               
-             
+              
+             console.log(last4digits +' '+ first6digits +' '+ cardmonth +' '+card_year_formatted);
+             break
 
               sql = `SELECT DISTINCT email
                      FROM user_cards 
@@ -168,7 +170,6 @@ router.post('/webhook', async (req, res) => {
                      bin = '${first6digits}'`;
               }
 
-           console.log(sql);
 
 
           await db.sequelize.query(sql,  { type: sequelize.QueryTypes.SELECT})
