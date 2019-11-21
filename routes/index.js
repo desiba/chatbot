@@ -170,11 +170,13 @@ router.post('/webhook', async (req, res) => {
               }
 
               console.log(sql);
-              break
 
           await db.sequelize.query(sql,  { type: sequelize.QueryTypes.SELECT})
             .then(function(data){
 
+                console.log(data);
+                break
+                
               if (!data.length){
                   
                 let user_email = {
