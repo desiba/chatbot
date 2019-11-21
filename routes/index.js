@@ -114,15 +114,11 @@ router.post('/webhook', async (req, res) => {
         case "input.wholinkedcard":
 
           let carddigits = parameters.first6digits +' '+ parameters.last4digits;
-          console.log(carddigits);
-          
-           
-
-           break
-            let  everything = `${parameters.carddigits} ${parameters.carddate}`.replace(/\./g,' ').trim().split(' '),
+         
+            let  everything = `${carddigits} ${parameters.carddate}`.replace(/\./g,' ').trim().split(' '),
                 
                 account_details_array = everything.filter((x) => {
-                if(x!=="")
+                if(x !== "")
                     return true;
                 });
           
@@ -131,7 +127,8 @@ router.post('/webhook', async (req, res) => {
 
             let account_digits_list = account_digit_string.split(" ");
           
-            
+            console.log(account_details_array);
+            break
             //swap values to [first6digits, last4digits] if [last4digits, first6digits] == true
             if(account_digits_list[0].toString().length != 6){
                 var temp = account_digits_list[0];
