@@ -175,8 +175,8 @@ router.post('/webhook', async (req, res) => {
             .then(function(data){
 
                 console.log(data);
-                break
                 
+
               if (!data.length){
                   
                 let user_email = {
