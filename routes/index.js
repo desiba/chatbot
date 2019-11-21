@@ -125,10 +125,13 @@ router.post('/webhook', async (req, res) => {
             let account_digit_string = `${account_details_array[0]} ${account_details_array[1]}`;
             let card_digit_string = account_details_array[2];
 
+            console.log(card_digit_string);
+            break
+
             let account_digits_list = account_digit_string.split(" ");
           
             console.log(account_details_array);
-            break
+            
             //swap values to [first6digits, last4digits] if [last4digits, first6digits] == true
             if(account_digits_list[0].toString().length != 6){
                 var temp = account_digits_list[0];
@@ -150,6 +153,7 @@ router.post('/webhook', async (req, res) => {
 
               let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
               
+              console.log()
               sql = `SELECT DISTINCT email
                      FROM user_cards 
                      WHERE last4 = '${last4digits}' AND 
