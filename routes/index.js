@@ -113,7 +113,12 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
+          let carddigits = parameters.first6digits +' '+ parameters.last4digits;
+          console.log(carddigits);
+          
            
+
+           break
             let  everything = `${parameters.carddigits} ${parameters.carddate}`.replace(/\./g,' ').trim().split(' '),
                 
                 account_details_array = everything.filter((x) => {
