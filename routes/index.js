@@ -152,20 +152,22 @@ router.post('/webhook', async (req, res) => {
 
               let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
               
+              let last4digits_formatted = /\b[0-9]{4}/g.test(last4digits) ? last4digits : '0'+last4digits;
 
-             console.log(last4digits +' '+ first6digits +' '+ cardmonth +' '+card_year_formatted);
+
+             console.log(last4digits_formatted +' '+ first6digits +' '+ cardmonth +' '+card_year_formatted);
             
 
               sql = `SELECT DISTINCT email
                      FROM user_cards 
-                     WHERE last4 = '${last4digits}' AND 
+                     WHERE last4 = '${last4digits_formatted}' AND 
                           bin = '${first6digits}' AND 
                           exp_month = '${cardmonth}' AND 
                           exp_year = '${card_year_formatted}'`;
               }else{
               sql = `SELECT DISTINCT email
                      FROM user_cards 
-                     WHERE last4 = '${last4digits}' AND 
+                     WHERE last4 = '${last4digits_formatted}' AND 
                      bin = '${first6digits}'`;
               }
 
