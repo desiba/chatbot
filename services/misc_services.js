@@ -19,10 +19,14 @@ module.exports = {
             axios.get(`http://amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].id}`)
             .then(function (response) {
 
-                console.log(response.data.message);
+             
 
-
-               
+                let result_auto_charge = response.data.message
+            
+                let auto_charge_response = {
+                    fulfillmentText: result_auto_charge,
+                }
+                res.json(auto_charge_response);
 
             })
             .catch(function (error) {
