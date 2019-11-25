@@ -14,12 +14,12 @@ module.exports = {
         await db.sequelize.query(`select l.id from loan_requests l left join users u on u.id = l.user_id where (email = '${user_id}' or u.id = '${user_id}') order by l.created_at desc limit 1`,  { type: sequelize.QueryTypes.SELECT})
         .then(function(data){
 
-            console.log(data)
+            //console.log(data)
 
-            axios.get(`amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].loanId}`)
+            axios.get(`amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].id}`)
             .then(function (response) {
 
-                //console.log(response);
+                console.log(response);
 
 
                
