@@ -30,7 +30,7 @@ request.end();
 
 
 
-getRes('who linked card 539923 0515 01/2022').then(function(res){console.log(res)});
+getRes('attempt a charge on 634832').then(function(res){console.log(res)});
 
 //getRes('total loans that was disbursed on October 20, 2017').then(function(res){console.log(res)});
 

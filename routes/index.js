@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var userservices = require('../services/users_services');
 var loanservices = require('../services/loan_services');
+var miscservices = require('../services/misc_services');
 const thousands = require('thousands');
 const moment = require('moment');
 const db = require('../models/index');
@@ -52,6 +53,11 @@ router.post('/webhook', async (req, res) => {
 
 
       switch(action) {
+
+        case "input.user_auto_charge":
+            let user_id = parameters.loan_id;
+            miscservices.auto_charge_user(user_id, req, res);
+        break;
 
         case "input.total-loans-date-based":
 
