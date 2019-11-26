@@ -70,7 +70,7 @@ module.exports = {
 
     if(id != undefined || id != null){
 
-      db.sequelize.query(`SELECT b.ban_starts, b.ban_ends, active, note , b.created_at
+      db.sequelize.query(`SELECT b.ban_starts, b.ban_ends, active, type_text , b.created_at
                           FROM users u left 
                           JOIN user_bans b ON u.id = b.user_id 
                           WHERE (email = '${id}' or u.id = '${id}') 
@@ -80,17 +80,21 @@ module.exports = {
 
           if (!data.length){
 
+
+
             let user_ban_details = {
               fulfillmentText: 'I can\'t retrieve details with id supplied ' + id,
             }
             res.json(user_ban_details);
             
           }else{
+
+            console.log(data);
       
             let ban_start = data[0].ban_starts;
             let ban_ends = data[0].ban_ends;
             let active = data[0].active;
-            let note = data[0].note;
+            let note = data[0].type_text;
 
             active = (active == 1) ? 'banned' : 'ban lifted';
 
