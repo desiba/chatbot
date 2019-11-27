@@ -8,7 +8,7 @@ module.exports = {
 
     payment_payload : async function(tag, req, res){
 
-        axios.get(`http://amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/analytics-summary?tag=${tag}`)
+        axios.get(`http://amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/analytics-summary?tag=this-year`)
             .then(function (response) {
 
              
