@@ -30,7 +30,7 @@ request.end();
 
 
 
-getRes('analytic for this week').then(function(res){console.log(res)});
+getRes('payment summary this year').then(function(res){console.log(res)});
 
 //getRes('total loans that was disbursed on October 20, 2017').then(function(res){console.log(res)});
 
