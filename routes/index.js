@@ -54,6 +54,22 @@ router.post('/webhook', async (req, res) => {
 
       switch(action) {
 
+        case "input.analytic-summary":
+            let tag = parameters.tag;
+
+            let tags = ['today', '90 days', 'livetime','week','30 days','year'];
+
+            let user_tag;_
+
+            if(tags.includes(tag)){
+               user_tag = tag;
+               miscservices.payment_payload(user_tag, req, res);
+            }
+
+           
+
+        break;
+
         case "input.user_auto_charge":
             let user_id = parameters.loan_id;
             miscservices.auto_charge_user(user_id, req, res);

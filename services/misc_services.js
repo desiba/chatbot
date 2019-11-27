@@ -6,6 +6,23 @@ const db = require('../models/index');
 
 module.exports = {
 
+    payment_payload : async function(tag, req, res){
+
+        axios.get(`http://amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/analytics-summary?tag=${tag}`)
+            .then(function (response) {
+
+             
+                console.log(response);
+                
+
+            })
+            .catch(function (error) {
+                
+
+                console.log(error);
+            });
+        
+    },
 
 
     auto_charge_user : async function(user_id, req, res){
