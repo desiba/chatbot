@@ -59,7 +59,7 @@ router.post('/webhook', async (req, res) => {
 
             let tags = ['today', '90 days', 'livetime','week','30 days','year'];
 
-            let user_tag;_
+            let user_tag;
 
             if(tags.includes(tag)){
                user_tag = tag;
