@@ -59,11 +59,9 @@ router.post('/webhook', async (req, res) => {
 
             let tags = ['today', 'last 90 days', 'livetime','week','30 days','year'];
 
-            let user_tag;
 
             if(tags.includes(tag)){
-               user_tag = tag;
-               miscservices.payment_payload(user_tag, req, res);
+               miscservices.payment_payload(tag, req, res);
             }
 
            
