@@ -32,11 +32,8 @@ module.exports = {
         .then(function(data){
 
             //console.log(data)
-
-            axios.get(`http://amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].id}`)
+            axios.get(`https://adminreadonly.aellacredit.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].id}`)
             .then(function (response) {
-
-             
 
                 let result_auto_charge = response.data.message
             
@@ -48,7 +45,6 @@ module.exports = {
             })
             .catch(function (error) {
                 // handle error
-
                 console.log(error);
             });
 
