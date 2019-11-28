@@ -34,10 +34,12 @@ module.exports = {
 
             console.log(data);
 
+            console.log(`https://adminreadonly.aellacredit.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].id}`);
+
             axios.get(`https://adminreadonly.aellacredit.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].id}`)
             .then(function (response) {
 
-                console.log(response);
+                console.log(response.data);
 
                 
 
