@@ -39,7 +39,7 @@ module.exports = {
             axios.get(`https://adminreadonly.aellacredit.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].id}`)
             .then(function (response) {
 
-                console.log(response.data);
+                console.log(response.data.message);
 
                 
 
