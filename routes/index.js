@@ -60,11 +60,15 @@ router.post('/webhook', async (req, res) => {
             if(['this year', 'this week', 'last 90 days', 'last 30 days'].includes(tag)){
 
               let tag_formated = tag.split(' ').join('-');
+
+              console.log(tag_formated);
           
                miscservices.payment_payload(tag_formated, req, res);
 
             }else if(['today','livetime'].includes(tag)){
-             
+              
+              console.log(tag);
+
                miscservices.payment_payload(tag, req, res);
 
             }else{
