@@ -21,26 +21,26 @@ module.exports = {
                 
                 let analytic_response = {
                     fulfillmentText: `
-                                        Users : ${users} \n 
-                                        Male-Users : ${maleUsers} \n 
-                                        Female-Users : ${femaleUsers} \n 
-                                        Customers : ${customers} \n 
-                                        Male-Customers : ${maleCustomers} \n 
-                                        Female-Customers : ${femaleCustomers} \n 
-                                        Eligibility Tests : ${eligibilityTests} \n 
-                                        Eligibility Declined : ${declinedEligibilityTests} \n 
-                                        All Loans : ${allLoans} \n 
-                                        All Loans Approved : ${allLoansApproved} \n 
-                                        All Loans Declined : ${allLoansDeclined} \n 
-                                        All Loans Disbursed : ${allLoansDisbursed} \n 
-                                        All Loans Running : ${allLoansRunning} \n 
-                                        All Partially Repaid Loans : ${allLoansPartiallyRepaid} \n 
-                                        All Loans Completely Repaid : ${allLoansCompletelyRepaid} \n 
-                                        Non Performing Loans : ${nonPerformingLoans} \n
-                                        Numbers of Defaulters : ${defaulters} \n
-                                        Customers with two Loans : ${customersWithTwoLoans} \n
-                                        Customers with three Loans  : ${customersWithThreeLoans} \n
-                                        Customers with four or more Loans : ${customersWithFourOrMoreLoans}
+                                        Users : ${users} 
+                                        \nMale-Users : ${maleUsers} 
+                                        \nFemale-Users : ${femaleUsers}
+                                        \nCustomers : ${customers}
+                                        \nMale-Customers : ${maleCustomers}
+                                        \nFemale-Customers : ${femaleCustomers} 
+                                        \nEligibility Tests : ${eligibilityTests}
+                                        \nEligibility Declined : ${declinedEligibilityTests} 
+                                        \nAll Loans : ${allLoans}
+                                        \nAll Loans Approved : ${allLoansApproved} 
+                                        \nAll Loans Declined : ${allLoansDeclined} 
+                                        \nAll Loans Disbursed : ${allLoansDisbursed}
+                                        \nAll Loans Running : ${allLoansRunning} 
+                                        \nAll Partially Repaid Loans : ${allLoansPartiallyRepaid} 
+                                        \nAll Loans Completely Repaid : ${allLoansCompletelyRepaid} 
+                                        \nNon Performing Loans : ${nonPerformingLoans} 
+                                        \nNumbers of Defaulters : ${defaulters}
+                                        \nCustomers with two Loans : ${customersWithTwoLoans}
+                                        \nCustomers with three Loans  : ${customersWithThreeLoans}
+                                        \nCustomers with four or more Loans : ${customersWithFourOrMoreLoans}
                                         
                                      `
                 }
