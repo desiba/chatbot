@@ -30,9 +30,8 @@ request.end();
 
 
 
-getRes('auto charge this user 228429').then(function(res){console.log(res)});
+getRes('auto charge this user 75649').then(function(res){console.log(res)});
 
-getRes('auto charge this user 36').then(function(res){console.log(res)});
 
 
 //getRes('total loans that was disbursed on October 20, 2017').then(function(res){console.log(res)});
