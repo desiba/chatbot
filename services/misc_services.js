@@ -13,9 +13,14 @@ module.exports = {
 
                 console.log(response.data.count);
 
+                let count = response.data.count;
+                let amount = response.data.amount;
+
+                const {users, maleUsers} = count;
+                const {loanBook} = amount;
                 
                 let analytic_response = {
-                    fulfillmentText: response.data.count,
+                    fulfillmentText: JSON.stringify(response.data.count), 
                 }
                 res.json(analytic_response);
                 
