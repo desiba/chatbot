@@ -52,8 +52,19 @@ module.exports = {
 
             })
             .catch(function (error) {
+                //error response
+
+                let error_auto_charge = 'message '+error.response.statusText +'\n data '+ error.response.data;
+            
+                let auto_charge_error_response = {
+                    fulfillmentText: error_auto_charge,
+                }
+                res.json(auto_charge_error_response);
                 console.log('error logging');
-                console.log(error);
+                console.log(error.response.status);
+                console.log(error.response.statusText);
+                console.log(error.response.data);
+
             });
 
         })
