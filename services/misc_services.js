@@ -11,11 +11,11 @@ module.exports = {
         axios.get(`http://amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/analytics-summary?tag=${tag}`)
             .then(function (response) {
 
-                console.log(response.data);
+                console.log(response.data.count);
 
                 
                 let analytic_response = {
-                    fulfillmentText: response.data,
+                    fulfillmentText: response.data.count,
                 }
                 res.json(analytic_response);
                 
