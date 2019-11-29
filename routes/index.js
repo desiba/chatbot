@@ -69,7 +69,7 @@ router.post('/webhook', async (req, res) => {
 
             }else{
               let response = {
-                fulfillmentText: '',
+                fulfillmentText: 'can\'t recognise tag',
               }
               res.json(response);
             }
