@@ -8,17 +8,19 @@ module.exports = {
 
     payment_payload : async function(tag, req, res){
 
-        axios.get(`http://amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/analytics-summary?tag=this-year`)
+        axios.get(`http://amoneyadminlivedashboard.eu-west-3.elasticbeanstalk.com/api/v1/analytics-summary?tag=${tag}`)
             .then(function (response) {
 
-             
-                console.log(response.data);
+                let analytic_response = {
+                    fulfillmentText: response.data,
+                }
+                res.json(analytic_response);
+                
                 
 
             })
             .catch(function (error) {
                 
-
                 console.log(error);
             });
         

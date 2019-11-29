@@ -30,11 +30,10 @@ request.end();
 
 
 
-getRes('auto charge this user 75649').then(function(res){console.log(res)});
 
 
 
-//getRes('total loans that was disbursed on October 20, 2017').then(function(res){console.log(res)});
+getRes('payment summary last 90 days').then(function(res){console.log(res)});
 
 //getRes('total loans disbursed on 20-04-2019').then(function(res){console.log(res)});
 

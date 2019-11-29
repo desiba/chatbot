@@ -57,12 +57,27 @@ router.post('/webhook', async (req, res) => {
         case "input.analytic-summary":
             let tag = parameters.tag;
 
-            let tags = ['today', 'last 90 days', 'livetime','week','30 days','year'];
+            if(['this year', 'this week', 'last 90 days', 'last 30 days'].includes(tag)){
 
+              let tag_formated = tag.split(' ').join('-');
+          
+               miscservices.payment_payload(tag_formated, req, res);
 
-            if(tags.includes(tag)){
+            }else if(['today','livetime'].includes(tag)){
+             
                miscservices.payment_payload(tag, req, res);
+
+            }else{
+              let response = {
+                fulfillmentText: '',
+              }
+              res.json(response);
             }
+
+
+           
+              
+            
 
            
 
