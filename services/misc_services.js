@@ -16,11 +16,33 @@ module.exports = {
                 let count = response.data.count;
                 let amount = response.data.amount;
 
-                const {users, maleUsers} = count;
+                const {users, maleUsers, femaleUsers, customers, maleCustomers, femaleCustomers, eligibilityTests, declinedEligibilityTests, allLoans, allLoansApproved, allLoansDeclined, allLoansDisbursed, allLoansRunning, allLoansPartiallyRepaid, allLoansCompletelyRepaid, nonPerformingLoans, defaulters, customersWithTwoLoans, customersWithThreeLoans, customersWithFourOrMoreLoans} = count;
                 const {loanBook} = amount;
                 
                 let analytic_response = {
-                    fulfillmentText: JSON.stringify(response.data.count), 
+                    fulfillmentText: `
+                                        Users : ${users} \n 
+                                        Male-Users : ${maleUsers} \n 
+                                        Female-Users : ${femaleUsers} \n 
+                                        Customers : ${customers} \n 
+                                        Male-Customers : ${maleCustomers} \n 
+                                        Female-Customers : ${femaleCustomers} \n 
+                                        Eligibility Tests : ${eligibilityTests} \n 
+                                        Eligibility Declined : ${declinedEligibilityTests} \n 
+                                        All Loans : ${allLoans} \n 
+                                        All Loans Approved : ${allLoansApproved} \n 
+                                        All Loans Declined : ${allLoansDeclined} \n 
+                                        All Loans Disbursed : ${allLoansDisbursed} \n 
+                                        All Loans Running : ${allLoansRunning} \n 
+                                        All Partially Repaid Loans : ${allLoansPartiallyRepaid} \n 
+                                        All Loans Completely Repaid : ${allLoansCompletelyRepaid} \n 
+                                        Non Performing Loans : ${nonPerformingLoans} \n
+                                        Numbers of Defaulters : ${defaulters} \n
+                                        Customers with two Loans : ${customersWithTwoLoans} \n
+                                        Customers with three Loans  : ${customersWithThreeLoans} \n
+                                        Customers with four or more Loans : ${customersWithFourOrMoreLoans}
+                                        
+                                     `
                 }
                 res.json(analytic_response);
                 
