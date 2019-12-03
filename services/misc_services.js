@@ -88,10 +88,9 @@ module.exports = {
             .catch(function (error) {
                 //error response
 
-                let error_auto_charge = 'message '+error.response.statusText +'\n data '+ error.response.data;
             
                 let auto_charge_error_response = {
-                    fulfillmentText: error_auto_charge,
+                    fulfillmentText: JSON.stringify(error.response.data.message),
                 }
                 res.json(auto_charge_error_response);
                 console.log('error logging');
