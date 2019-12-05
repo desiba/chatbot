@@ -24,7 +24,7 @@ module.exports = {
                     fulfillmentText: `
                                         Count Based Analytic Summary for ${tag}
                                         Users : ${users} 
-                                        \nMale-Users : ${maleUsers} 
+                                        Male-Users : ${maleUsers} 
                                         \nFemale-Users : ${femaleUsers}
                                         \nCustomers : ${customers}
                                         \nMale-Customers : ${maleCustomers}
@@ -48,8 +48,6 @@ module.exports = {
                 }
                 res.json(analytic_response);
                 
-                
-
             })
             .catch(function (error) {
                 
