@@ -73,7 +73,7 @@ module.exports = {
       db.sequelize.query(`SELECT b.ban_starts, b.ban_ends, active, type_text, note , b.created_at
                           FROM users u left 
                           JOIN user_bans b ON u.id = b.user_id 
-                          WHERE (email = '${id}' or u.id = '${id}') 
+                          WHERE (b.active = '1' AND email = '${id}' or u.id = '${id}') 
                           ORDER BY created_at DESC LIMIT 1`,  
                           { type: sequelize.QueryTypes.SELECT})
         .then(function(data){
