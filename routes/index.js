@@ -8,6 +8,8 @@ const moment = require('moment');
 const db = require('../models/index');
 const sequelize = require('sequelize');
 
+var os = require('os');
+
 
 let now = moment();
 
@@ -157,10 +159,11 @@ router.post('/webhook', async (req, res) => {
           let carddate = parameters.carddate;
           let carddigits = first6digits +' '+ last4digits +' '+carddate; 
 
-          let hostname = Request.UserHostName;
+         
 
 
-          console.log(carddigits +' '+ hostname);
+          console.log(carddigits);
+          console.log(os);
 
           /*
          
