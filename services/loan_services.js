@@ -125,7 +125,7 @@ module.exports = {
         })
         .catch(err => {
             throw err;
-            console.log(err);
+            
 
         });
 
@@ -133,4 +133,4 @@ module.exports = {
     }
 
    
-}
+};

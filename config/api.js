@@ -33,7 +33,11 @@ request.end();
 
 
 
-getRes('payment summary today').then(function(res){console.log(res)});
+//getRes('payment summary today').then(function(res){console.log(res)});
+
+
+
+getRes('who linked card 485474 5484').then(function(res){console.log(res)});
 
 //getRes('total loans disbursed on 20-04-2019').then(function(res){console.log(res)});
 

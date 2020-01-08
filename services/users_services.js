@@ -29,7 +29,7 @@ module.exports = {
       db.sequelize.query(`SELECT count(id) AS total_users_today FROM loan_requests WHERE approval_status IN (1,3,7,9) AND loan_starts = '${loandate}'`,  { type: sequelize.QueryTypes.SELECT})
       .then(function(data){
 
-          let result_total_disbursment_today = data[0].total_loan_today
+          let result_total_disbursment_today = data[0].total_loan_today;
           
           let total_loan_response = {
             fulfillmentText: thousands(result_total_disbursment_today),
@@ -49,8 +49,6 @@ module.exports = {
       db.sequelize.query(`SELECT COUNT(*) AS totalusers FROM users`,  { type: sequelize.QueryTypes.SELECT})
         .then(function(data){
           let res_total_users = data[0].totalusers;
-          console.log(JSON.stringify(data));
-    
           let total_users_response = {
             fulfillmentText: thousands(res_total_users),
           }
@@ -80,26 +78,18 @@ module.exports = {
 
           if (!data.length){
 
-
-
             let user_ban_details = {
-              fulfillmentText: 'I can\'t retrieve details with id supplied ' + id,
+              fulfillmentText: 'please try again with the user\'s' + id,
             }
             res.json(user_ban_details);
             
           }else{
-
-            console.log(data);
       
             let ban_start = data[0].ban_starts;
             let ban_ends = data[0].ban_ends;
-            let active = data[0].active;
+            let active =  (data[0].active == 1) ? 'banned' : 'ban lifted';
             let note = (data[0].note != null) ? data[0].note : data[0].type_text;
 
-            active = (active == 1) ? 'banned' : 'ban lifted';
-
-
-            
             let user_ban_details = {
               fulfillmentText:  "Ban Starts: " +ban_start + 
                                 "\nBan Ends: " +ban_ends +
@@ -107,9 +97,6 @@ module.exports = {
                                 "\nReason: "+ note,
             }
             res.json(user_ban_details);
-
-        
-
           }
           
         })
@@ -118,11 +105,6 @@ module.exports = {
           console.log(err);
 
         });
-
-
-
-
-       
 
     }else{
             //if userid isnt used check for email of the user

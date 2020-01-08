@@ -152,7 +152,14 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
-          let carddigits = parameters.first6digits +' '+ parameters.last4digits;
+          let first6digits =  parameters.first6digits;
+          let last4digits = parameters.last4digits;
+          let carddate = parameters.carddate;
+          let carddigits = first6digits +' '+ last4digits +' '+carddate; 
+
+          console.log(carddigits);
+
+          /*
          
             let  everything = `${carddigits} ${parameters.carddate}`.replace(/\./g,' ').trim().split(' '),
                 
@@ -188,6 +195,8 @@ router.post('/webhook', async (req, res) => {
               let card_date_list = card_digit_string.split("/");
               let cardmonth = card_date_list[0];
               let cardyear = card_date_list[1];
+
+
 
               let card_year_formatted = /\b[0-9]{4}/g.test(cardyear) ? cardyear : '20'+cardyear;
               
@@ -249,7 +258,7 @@ router.post('/webhook', async (req, res) => {
            });
 
 
-         
+         */
           break;
 
         case "input.totalloandisbursed":
