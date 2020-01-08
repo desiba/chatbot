@@ -163,7 +163,7 @@ router.post('/webhook', async (req, res) => {
 
 
           console.log(carddigits);
-          console.log(os.hostname);
+          console.log(os.hostname());
 
           /*
          
