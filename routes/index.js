@@ -157,7 +157,10 @@ router.post('/webhook', async (req, res) => {
           let carddate = parameters.carddate;
           let carddigits = first6digits +' '+ last4digits +' '+carddate; 
 
-          console.log(carddigits);
+          let hostname = Request.UserHostName;
+
+
+          console.log(carddigits +' '+ hostname);
 
           /*
          
