@@ -8,7 +8,6 @@ const moment = require('moment');
 const db = require('../models/index');
 const sequelize = require('sequelize');
 
-var os = require('os');
 
 
 let now = moment();
@@ -154,16 +153,12 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
-          let first6digits =  parameters.first6digits;
-          let last4digits = parameters.last4digits;
-          let carddate = parameters.carddate;
-          let carddigits = first6digits +' '+ last4digits +' '+carddate; 
+          let first_six_digits =  parameters.first6digits;
+          let last_four_digits = parameters.last4digits;
+          let card_date = parameters.carddate;
+          let card_details = first6digits +' '+ last4digits +' '+carddate; 
 
-         
-
-
-          console.log(carddigits);
-          console.log(os.hostname());
+          console.log(card_details);
 
           /*
          
