@@ -158,7 +158,7 @@ router.post('/webhook', async (req, res) => {
           let card_month = parameters.cardmonth;
           let card_year = parameters.cardyear;
 
-          let card_details = first_six_digits +' '+ last_four_digits +' '+card_month + ' '+card_year; 
+          let card_details = `${first_six_digits} ${last_four_digits} ${card_month} ${card_year}`.replace(/\./g,' ').trim().split(' '); 
 
           console.log(typeof card_details);
 
