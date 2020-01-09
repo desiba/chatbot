@@ -160,7 +160,17 @@ router.post('/webhook', async (req, res) => {
 
           let card_details = `${first_six_digits} ${last_four_digits} ${card_month} ${card_year}`.replace(/\./g,' ').trim().split(' '); 
 
-          console.log(card_details[0]);
+          let card_details_object = Object.assign({}, card_details);
+
+          const {six_digits, four_digits, month, year} = card_details_object;
+
+          const cardInfo = new Proxy(card_details_object, {
+
+          });
+
+          console.log(six_digits);
+          
+          //console.log(card_details[0]);
 
           /*
          
