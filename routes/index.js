@@ -160,7 +160,7 @@ router.post('/webhook', async (req, res) => {
 
           let card_details = first_six_digits +' '+ last_four_digits +' '+card_month + ' '+card_year; 
 
-          console.log(card_details);
+          console.log(typeof card_details);
 
           /*
          
