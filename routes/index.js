@@ -160,18 +160,25 @@ router.post('/webhook', async (req, res) => {
 
           let card_details = `${first_six_digits} ${last_four_digits} ${card_month} ${card_year}`.replace(/\./g,' ').trim().split(' '); 
 
-          let card_details_object = Object.assign({}, card_details);
+          let six_digits = card_details[0];
+          let four_digits = card_details[1];
+          let month = card_details[2];
+          let year = card_details[3];
 
-          const {six_digits, four_digits, month, year} = card_details_object;
+          if(six_digits.toString().length == 6 && four_digits.toString().length == 4){
 
-          const cardInfo = new Proxy(card_details_object, {
+          }else{
+            let diff = four_digits.toString().length - 4;
+            if(diff == 1) four_digits = '0' + four_digits;
+            if(diff == 2) four_digits = '00' + four_digits;
+            if(diff == 3) four_digits = '000' + four_digits;
+          }
 
-          });
+          console.log(four_digits);
 
-          console.log(six_digits);
+
+
           
-          //console.log(card_details[0]);
-
           /*
          
             let  everything = `${carddigits} ${parameters.carddate}`.replace(/\./g,' ').trim().split(' '),
