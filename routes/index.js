@@ -181,15 +181,17 @@ router.post('/webhook', async (req, res) => {
             if(diff == 3) four_digits = '000' + four_digits;
           }
 
-          if(month.toString().length < 2){
-            month = '0' + month;
-          }
+          if(month != undefined && year != undefined){
 
-          if(year.toString().length == 2){
-            year = '20' +  year;
-          }
+            if(month.toString().length < 2){
+              month = '0' + month;
+            }
 
-          
+            if(year.toString().length == 2){
+              year = '20' +  year;
+            }
+
+          }
 
           console.log(four_digits);
           console.log(month);
