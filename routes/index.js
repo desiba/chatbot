@@ -157,6 +157,7 @@ router.post('/webhook', async (req, res) => {
           let last_four_digits = parameters.last4digits;
           let card_month = parameters.cardmonth;
           let card_year = parameters.cardyear;
+          const sql = '';
 
           let card_details = `${first_six_digits} ${last_four_digits} ${card_month} ${card_year}`.replace(/\./g,' ').trim().split(' '); 
 
@@ -165,16 +166,34 @@ router.post('/webhook', async (req, res) => {
           let month = card_details[2];
           let year = card_details[3];
 
-          if(six_digits.toString().length == 6 && four_digits.toString().length == 4){
+          if(six_digits.toString().length < 6){
 
-          }else{
+            let card_digits_resp = {
+              fulfillmentText: 'please follow this format; first-six-digits last-four-digits card-month card-year',
+            }
+            res.json(card_digits_resp);
+          }
+
+          if(four_digits.toString().length < 4){
             let diff = four_digits.toString().length - 4;
             if(diff == 1) four_digits = '0' + four_digits;
             if(diff == 2) four_digits = '00' + four_digits;
             if(diff == 3) four_digits = '000' + four_digits;
           }
 
+          if(month.toString().length < 2){
+            month = '0' + month;
+          }
+
+          if(year.toString().length == 2){
+            year = '20' +  year;
+          }
+
+          
+
           console.log(four_digits);
+          console.log(month);
+
 
 
 
