@@ -155,8 +155,10 @@ router.post('/webhook', async (req, res) => {
 
           let first_six_digits =  parameters.first6digits;
           let last_four_digits = parameters.last4digits;
-          let card_date = parameters.carddate;
-          let card_details = first_six_digits +' '+ last_four_digits +' '+card_date; 
+          let card_month = parameters.cardmonth;
+          let card_year = paramters.cardyear;
+
+          let card_details = first_six_digits +' '+ last_four_digits +' '+card_month + ' '+card_year; 
 
           console.log(card_details);
 
