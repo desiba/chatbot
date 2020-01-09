@@ -157,7 +157,7 @@ router.post('/webhook', async (req, res) => {
           let last_four_digits = parameters.last4digits;
           let card_month = parameters.cardmonth;
           let card_year = parameters.cardyear;
-          const sql = '';
+          let sql = '';
 
           let card_details = `${first_six_digits} ${last_four_digits} ${card_month} ${card_year}`.replace(/\./g,' ').trim().split(' '); 
 
@@ -191,15 +191,61 @@ router.post('/webhook', async (req, res) => {
               year = '20' +  year;
             }
 
+            sql = `SELECT DISTINCT email
+                     FROM user_cards 
+                     WHERE last4 = '${four_digits}' AND 
+                          bin = '${six_digits}' AND 
+                          exp_month = '${month}' AND 
+                          exp_year = '${year}'`;
+
+          }else{
+            sql = `SELECT DISTINCT email
+                     FROM user_cards 
+                     WHERE last4 = '${four_digits}' AND 
+                     bin = '${six_digits}'`;
           }
 
-          console.log(four_digits);
-          console.log(month);
+
+          await db.sequelize.query(sql,  { type: sequelize.QueryTypes.SELECT})
+          .then(function(data){
+
+            console.log(data);
+
+            if (!data.length){
+                
+              let user_email = {
+                fulfillmentText: 'First six digits '+six_digits+
+                                 '\nLast four disgits '+four_digits+
+                                 '\nCard Month  '+month+
+                                 '\nCard Year '+year+
+                                 '\ncard not found',
+              }
+              res.json(user_email);
+          }else{
+
+            let emails = '';
+                
+              data.forEach((item)=> {
+                emails = emails.concat(' '+item.email);
+              });
+
+            let user_email = {
+              fulfillmentText: emails,
+            }
+            res.json(user_email);
+       
+          }
+        
+         })
+        .catch(err => {
+          throw err;
+          console.log(err);
+
+         });
+
+         
 
 
-
-
-          
           /*
          
             let  everything = `${carddigits} ${parameters.carddate}`.replace(/\./g,' ').trim().split(' '),
