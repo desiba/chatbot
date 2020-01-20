@@ -64,6 +64,8 @@ module.exports = {
             axios.get(`https://adminreadonly.aellacredit.com/api/v1/loanrequests/charge-hundred-percent/loan/${data[0].id}`)
             .then(function (response) {
 
+                console.log(response);
+
                 let auto_charge_response = {
                     fulfillmentText: response.data.message,
                 }

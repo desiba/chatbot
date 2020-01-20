@@ -79,13 +79,6 @@ router.post('/webhook', async (req, res) => {
               res.json(response);
             }
 
-
-           
-              
-            
-
-           
-
         break;
 
         case "input.user_auto_charge":
@@ -208,8 +201,6 @@ router.post('/webhook', async (req, res) => {
 
           await db.sequelize.query(sql,  { type: sequelize.QueryTypes.SELECT})
           .then(function(data){
-
-            console.log(data);
 
             if (!data.length){
                 
