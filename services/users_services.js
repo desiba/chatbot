@@ -91,10 +91,7 @@ module.exports = {
             let note = (data[0].note != null) ? data[0].note : data[0].type_text;
 
             let user_ban_details = {
-              fulfillmentText:  `Ban Starts: ${ban_start}
-                                \nBan Ends: ${ban_ends}
-                                \nStatus: ${active}
-                                \nReason: ${note}`,
+              fulfillmentText:  `Ban Starts: *${ban_start}*\nBan Ends: *${ban_ends}*\nStatus: *${active}*\nReason: *${note}*`,
             }
             res.json(user_ban_details);
           }
