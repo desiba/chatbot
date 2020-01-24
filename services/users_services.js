@@ -78,7 +78,7 @@ module.exports = {
 
           console.log(data);
 
-          if (typeof data === 'undefined'){
+          if (typeof data == 'undefined'){
 
             let user_ban_details = {
               fulfillmentText: `${id} isn\'t on the ban list`,
