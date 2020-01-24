@@ -78,10 +78,10 @@ module.exports = {
 
           console.log(data);
 
-          if (!data.length){
+          if (typeof data === 'undefined'){
 
             let user_ban_details = {
-              fulfillmentText: 'please try again with the user\'s' + id,
+              fulfillmentText: `${id} isn\'t on the ban list`,
             }
             res.json(user_ban_details);
             
