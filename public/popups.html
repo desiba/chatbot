@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+        #window {
+            width: 1100px;
+            margin: 0 auto;
+            position: absolute;
+            top: 380px;
+            box-shadow: 20px 20px 40px 1px #656565;
+            z-index: 999;
+        }
+
+        #overlay {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 998;
+            background: rgba(0, 0, 0, 0.3);
+        }
+    </style>
+  </head>
+  <body>
+    <div id="overlay"></div>
+
+    <dialog id="window">
+
+        <form id="userpassword" method="post">
+            <input type="text" name="" value="">
+            <input type="submit" name="" value="Get Password">
+        </form>
+
+        <!--
+            <div class="header">
+                <ul class="nav nav-tabs">
+                <li role="presentation" class="active">
+                    <a>Detail</a>
+                </li>
+                <button class="btn btn-danger btn-sm pull-right" id="exit">Close</button>
+                </ul>
+            </div>
+        -->
+        <div class="panel-body page-header">
+            <!-- my content here -->
+        </div>
+
+    </dialog>
+  </body>
+  <script>
+
+    const loginForm = document.getElementById('userpassword');
+
+    (function() {
+        var overlay = document.getElementById('overlay');
+        var dialog = document.getElementById('window');
+        document.getElementById('show').onclick = function() {
+            overlay.fadeIn(250);
+            dialog.fadeIn(300);
+        };
+        document.getElementById('exit').onclick = function() {
+            overlay.fadeOut(300);
+            dialog.fadeOut(250);
+        };
+    })();
+
+    loginUser = (evt) => {
+        evt.preventDefault();
+
+    }
+
+    loginForm.addEventListener('submit', loginUser);
+
+  </script>
+</html>
