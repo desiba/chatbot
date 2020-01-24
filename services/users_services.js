@@ -76,6 +76,8 @@ module.exports = {
                           { type: sequelize.QueryTypes.SELECT})
         .then(function(data){
 
+          console.log(data.length);
+          
           if (!data.length){
 
             let user_ban_details = {
