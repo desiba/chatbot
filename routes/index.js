@@ -146,7 +146,7 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
-          let card_details_from_dialogflow = parameters.card_details.replace('/','').trim().split('');
+          let card_details_from_dialogflow = parameters.card_details;
 
           console.log(card_details_from_dialogflow);
 
@@ -157,9 +157,9 @@ router.post('/webhook', async (req, res) => {
           //et card_year = parameters.cardyear;
           //let sql = '';
 
-          //let card_details = card_details_from_dialogflow.replace(/\./g,' ').trim().split(' '); 
+          let card_details = card_details_from_dialogflow.replace(/\./g,' ').trim().split(' '); 
           
-          //console.log(card_details);
+          console.log(card_details);
 
           //let six_digits = card_details[0];
           //let four_digits = card_details[1];
