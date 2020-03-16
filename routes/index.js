@@ -146,13 +146,16 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
-          let first_six_digits =  parameters.first6digits;
-          let last_four_digits = parameters.last4digits;
-          let card_month = parameters.cardmonth;
-          let card_year = parameters.cardyear;
+          let card_details_from_dialogflow = parameters.card_details;
+
+
+          //let first_six_digits =  parameters.first6digits;
+          //let last_four_digits = parameters.last4digits;
+          //let card_month = parameters.cardmonth;
+          l//et card_year = parameters.cardyear;
           let sql = '';
 
-          let card_details = `${first_six_digits} ${last_four_digits} ${card_month} ${card_year}`.replace(/\./g,' ').trim().split(' '); 
+          let card_details = card_details_from_dialogflow.replace(/\./g,' ').trim().split(' '); 
 
           let six_digits = card_details[0];
           let four_digits = card_details[1];

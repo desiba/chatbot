@@ -81,7 +81,7 @@ module.exports = {
           if (data === undefined || data.length == 0){
 
             let user_ban_details = {
-              fulfillmentText: `${id} isn\'t on the ban list`,
+              fulfillmentText: `_${id}_ isn\'t on the ban list`,
             }
             res.json(user_ban_details);
             
