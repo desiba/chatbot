@@ -148,7 +148,8 @@ router.post('/webhook', async (req, res) => {
 
           let card_details_from_dialogflow = parameters.card_details.replace('/','');
 
-          
+          console.log(card_details_from_dialogflow);
+
 
           //let first_six_digits =  parameters.first6digits;
           //let last_four_digits = parameters.last4digits;
