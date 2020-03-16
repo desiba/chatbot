@@ -35,7 +35,7 @@ request.end();
 
 //getRes('payment summary today').then(function(res){console.log(res)});
 
-getRes('who linked card 539923  2386 03 / 20').then(function(res){console.log(res)});
+getRes('who linked card 519911 3754').then(function(res){console.log(res)});
 
 //getRes('total loans disbursed on 20-04-2019').then(function(res){console.log(res)});
 
