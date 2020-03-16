@@ -152,13 +152,13 @@ router.post('/webhook', async (req, res) => {
           //let first_six_digits =  parameters.first6digits;
           //let last_four_digits = parameters.last4digits;
           //let card_month = parameters.cardmonth;
-          l//et card_year = parameters.cardyear;
+          //et card_year = parameters.cardyear;
           let sql = '';
 
           let card_details = card_details_from_dialogflow.replace(/\./g,' ').trim().split(' '); 
           
           console.log(card_details);
-          
+
           //let six_digits = card_details[0];
           //let four_digits = card_details[1];
           //let month = card_details[2];
