@@ -146,33 +146,18 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
-          let card_details_from_dialogflow = parameters.card_details.replace(/\/./g,' ').trim().split(' ').filter((ele)=>{
+          let card_details = parameters.card_details.replace(/\/./g,' ').trim().split(' ').filter((ele)=>{
               return ele != '';
           });
+
+          let six_digits =  card_details[0];
+          let four_digits = card_details[1];
+          let month = card_details[2];
+          let year = card_details[3];
+          let sql = '';
+
+
           
-          
-          console.log(card_details_from_dialogflow);
-
-
-          //let first_six_digits =  parameters.first6digits;
-          //let last_four_digits = parameters.last4digits;
-          //let card_month = parameters.cardmonth;
-          //et card_year = parameters.cardyear;
-          //let sql = '';
-
-          //let card_details = card_details_from_dialogflow.replace(/[\/|-|#]/g,' ').trim().split(' '); 
-          
-          //var cards = card_details.filter(function(card){
-             //return card.match(/ˆ[0-9]$/);
-          //});
-          //console.log(cards);
-
-          //let six_digits = card_details[0];
-          //let four_digits = card_details[1];
-          //let month = card_details[2];
-          //let year = card_details[3];
-
-          /*
 
           if(six_digits.toString().length < 6){
 
@@ -250,7 +235,7 @@ router.post('/webhook', async (req, res) => {
          });
 
          
-         */
+         
 
          
           break;
