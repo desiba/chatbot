@@ -146,9 +146,11 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
-          let card_details_from_dialogflow = parameters.card_details.replace(/\/./g,' ').trim().split(' ');
+          let card_details_from_dialogflow = parameters.card_details.replace(/\/./g,' ').trim().split(' ').filter((ele)=>{
+              return ele != '';
+          });
           
-
+          
           console.log(card_details_from_dialogflow);
 
 
