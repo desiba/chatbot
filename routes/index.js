@@ -159,7 +159,10 @@ router.post('/webhook', async (req, res) => {
 
           let card_details = card_details_from_dialogflow.replace(/[\/|-|#]/g,' ').trim().split(' '); 
           
-          console.log(card_details);
+          var cards = card_details.every(function(card){
+             return card.match('/[0-9]/g');
+          });
+          console.log(cards);
 
           //let six_digits = card_details[0];
           //let four_digits = card_details[1];
