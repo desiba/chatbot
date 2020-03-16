@@ -146,8 +146,9 @@ router.post('/webhook', async (req, res) => {
 
         case "input.wholinkedcard":
 
-          let card_details_from_dialogflow = parameters.card_details;
+          let card_details_from_dialogflow = parameters.card_details.replace('/','');
 
+          
 
           //let first_six_digits =  parameters.first6digits;
           //let last_four_digits = parameters.last4digits;
